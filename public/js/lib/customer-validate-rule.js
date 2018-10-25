@@ -1,0 +1,5 @@
+$(function () {
+   $(".autoJqValidator").validate({
+        ignore: '',
+    })
+})

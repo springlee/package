@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware(['setLocale'])->group(function () {
+    Auth::routes(['verify' => true]);
 });
 
-Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/changeLocale/{locale}', 'IndexController@changeLocale');
+
+Route::middleware(['setLocale','auth','verified'])->group(function () {
+    Route::get('/', 'IndexController@index');  //首页
+    Route::get('index/main', 'IndexController@main')->name('index.main');
+    Route::get('user/logout', 'UserController@logout')->name('user.logout');
+});
