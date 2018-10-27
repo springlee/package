@@ -386,26 +386,26 @@ $(document).ready(function () {
         content.remove();
     });
     //返回顶部
-    var goTop = '<div class="gohome" id="toTop" >' +
-        '<a class="animated bounceInUp"  title="返回顶部">' +
-        '<i class="fa fa-arrow-circle-up" style="font-size: 20px;"></i></a>' +
-        '</div>';
-    $("body").append(goTop);
-
-    $(window).scroll(function (event) {
-        if ($(this).scrollTop() === 0) {
-            $("#toTop").hide();
-        }
-        if ($(this).scrollTop() !== 0) {
-            $("#toTop").show();
-        }
-    });
-    $("#toTop").on('click', function () {
-        $("html,body").animate({
-                scrollTop: "0px"
-            }, 300
-        )
-    });
+    // var goTop = '<div class="gohome" id="toTop" >' +
+    //     '<a class="animated bounceInUp"  title="返回顶部">' +
+    //     '<i class="fa fa-arrow-circle-up" style="font-size: 20px;"></i></a>' +
+    //     '</div>';
+    // $("body").append(goTop);
+    //
+    // $(window).scroll(function (event) {
+    //     if ($(this).scrollTop() === 0) {
+    //         $("#toTop").hide();
+    //     }
+    //     if ($(this).scrollTop() !== 0) {
+    //         $("#toTop").show();
+    //     }
+    // });
+    // $("#toTop").on('click', function () {
+    //     $("html,body").animate({
+    //             scrollTop: "0px"
+    //         }, 300
+    //     )
+    // });
 
     $('#myTab a').on('click', function (e) {
         e.preventDefault();

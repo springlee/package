@@ -15,18 +15,16 @@
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li>
                             <a href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </li>
                     </ul>
                 </div>
-                <div class="logo-element">{{}}</div>
+                <div class="logo-element">PACK</div>
             </li>
             <li>
                 <a href="#">

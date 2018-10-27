@@ -54,10 +54,10 @@
         <div class="col-sm-7">
             <div class="signin-info">
                 <div class="logopanel m-b">
-                    <h1>[ PARCEL ]</h1>
+                    <h1>[ PACKAGE ]</h1>
                 </div>
                 <div class="m-b"></div>
-                <h4>{{ __('Welcome to use parcel monitoring system.') }}</h4>
+                <h4>{{ __('Welcome to use package monitoring system.') }}</h4>
                 <ul class="m-b">
                     <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势一</li>
                     <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势二</li>
@@ -88,7 +88,7 @@
 
     <div class="signup-footer">
         <div class="pull-left">
-            &copy; 2018 All Rights Reserved. PARCEL
+            &copy; 2018 All Rights Reserved. PACKAGE
         </div>
     </div>
 </div>
