@@ -14,6 +14,11 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li>
+                            <a href="{{ route('user.password.reset') }}" class="J_menuItem" href="" data-index="0">
+                                {{ __('Reset Password') }}
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -28,25 +33,70 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa fa-cog"></i>
-                    <span class="nav-label">基础资料</span>
+                    <i class="fa fa fa-truck"></i>
+                    <span class="nav-label">快递包裹管理</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">费用单列表</a>
+                        <a class="J_menuItem" href="" data-index="0">快递包裹列表</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="" data-index="0">快递包裹签收</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#">
-                    <i class="fa fa-cny"></i>
-                    <span class="nav-label">费用列表</span>
+                    <i class="fa  fa-bar-chart"></i>
+                    <span class="nav-label">报表管理</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">费用单列表</a>
+                        <a class="J_menuItem" href="" data-index="0">快递包裹报表</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-dollar"></i>
+                    <span class="nav-label">财务管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="" data-index="0">我的产品</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="" data-index="0">快递包裹确认</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="" data-index="0">产品服务</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa  fa-cog"></i>
+                    <span class="nav-label">基础资料管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="" data-index="0">物流公司列表</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span class="nav-label">用户管理</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="" data-index="0">用户列表</a>
                     </li>
                 </ul>
             </li>

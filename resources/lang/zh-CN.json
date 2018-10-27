@@ -23,5 +23,22 @@
   "Sorry, the page you are looking for could not be found.":"你访问的页面不存在",
   "Go Home":"返回首页",
   "Welcome to use package monitoring system.":"欢迎使用 包裹监控系统",
-  "Language":"语言"
+  "Language":"语言",
+  "Company Name":"公司 名称",
+  "Confirm":"确认",
+  "Reset":"重置",
+  "Home":"首页",
+  "Closing":"关闭",
+  "Locate the current tab":"定位当前选项卡",
+  "Close all tabs":"关闭全部选项卡",
+  "Close other tabs":"关闭其他选项卡",
+  "Deal with success":"处理成功",
+  "Theme":"主题",
+  "Setting":"设置",
+  "You can select and preview the layout and style of the theme from here, and these settings are saved locally and applied directly the next time you open them.":"你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。",
+  "Pick up the left menu":"收起左侧菜单",
+  "Fixed top":"固定顶部",
+  "Fixed width":"固定宽度",
+  "View all messages": "查看所有消息",
+  "Dashboard":" 仪表盘"
 }

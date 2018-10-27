@@ -17,13 +17,13 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group ">
-                            <input placeholder="{{ __('Name') }}" type="text"
-                                   class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                   name="name" value="{{ old('name') }}" required autofocus>
-                            @if ($errors->has('name'))
-                                <span class="has-error text-left" role="alert">
-                                        <strong class="help-block">{{ $errors->first('name') }}</strong>
-                                    </span>
+                            <input placeholder="{{ __('Company Name') }}" type="text"
+                                   class="form-control{{ $errors->has('enterprise_company_name') ? ' is-invalid' : '' }}"
+                                   name="enterprise_company_name" value="{{ old('enterprise_company_name') }}" required autofocus>
+                            @if ($errors->has('enterprise_company_name'))
+                                  <span class="has-error text-left" role="alert">
+                                      <strong class="help-block">{{ $errors->first('enterprise_company_name') }}</strong>
+                                  </span>
                             @endif
                         </div>
                         <div class="form-group ">

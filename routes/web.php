@@ -21,5 +21,9 @@ Route::get('/changeLocale/{locale}', 'IndexController@changeLocale');
 Route::middleware(['setLocale','auth','verified'])->group(function () {
     Route::get('/', 'IndexController@index');  //首页
     Route::get('index/main', 'IndexController@main')->name('index.main');
-    Route::get('user/logout', 'UserController@logout')->name('user.logout');
+
+    Route::get('user/password/reset', 'UserController@resetPasswordForm')->name('user.password.reset');
+
+    Route::post('user/password/reset', 'UserController@resetPassword')->name('user.password.update');
+
 });

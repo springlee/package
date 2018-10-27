@@ -50,7 +50,7 @@
                         <li>
                             <div class="text-center link-block">
                                 <a class="J_menuItem" href="mailbox.html">
-                                    <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
+                                    <i class="fa fa-envelope"></i> <strong> {{__('View all messages')}}</strong>
                                 </a>
                             </div>
                         </li>
@@ -58,7 +58,7 @@
                 </li>
                 <li class="dropdown hidden-xs">
                     <a class="right-sidebar-toggle" aria-expanded="false">
-                        <i class="fa fa-tasks"></i> 主题
+                        <i class="fa fa-tasks"></i> {{__('Theme')}}
                     </a>
                 </li>
             </ul>
@@ -69,19 +69,18 @@
         <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i></button>
         <nav class="page-tabs J_menuTabs">
             <div class="page-tabs-content">
-                <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">首页</a>
+                <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">{{__('Home')}}</a>
             </div>
         </nav>
         <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i></button>
         <div class="btn-group roll-nav roll-right">
-            <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span></button>
+            <button class="dropdown J_tabClose" data-toggle="dropdown">{{__('Closing')}}<span class="caret"></span></button>
             <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                <li class="J_tabShowActive"><a>定位当前选项卡</a>
-                </li>
+                <li class="J_tabShowActive"><a>{{__('Closing')}}</a></li>
                 <li class="divider"></li>
-                <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                <li class="J_tabCloseAll"><a>{{__('Close all tabs')}}</a>
                 </li>
-                <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                <li class="J_tabCloseOther"><a>{{__('Close other tabs')}}</a>
                 </li>
             </ul>
         </div>
@@ -100,20 +99,20 @@
         <ul class="nav nav-tabs navs-3">
             <li class="active">
                 <a data-toggle="tab" href="#tab-1">
-                    <i class="fa fa-gear"></i> 主题
+                    <i class="fa fa-gear"></i>  {{__('Theme')}}
                 </a>
             </li>
         </ul>
         <div class="tab-content">
             <div id="tab-1" class="tab-pane active">
                 <div class="sidebar-title">
-                    <h3><i class="fa fa-comments-o"></i> 主题设置</h3>
-                    <small><i class="fa fa-tim"></i> 你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。</small>
+                    <h3><i class="fa fa-comments-o"></i>{{__('Theme')}}{{__('Setting')}}</h3>
+                    <small><i class="fa fa-tim"></i> You can select and preview the layout and style of the theme from here, and these settings are saved locally and applied directly the next time you open them.</small>
                 </div>
                 <div class="skin-setttings">
-                    <div class="title">主题设置</div>
+                    <div class="title">{{__('Theme')}}{{__('Setting')}}</div>
                     <div class="setings-item">
-                        <span>收起左侧菜单</span>
+                        <span>{{__('Pick up the left menu')}}</span>
                         <div class="switch">
                             <div class="onoffswitch">
                                 <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox"
@@ -126,7 +125,7 @@
                         </div>
                     </div>
                     <div class="setings-item">
-                        <span>固定顶部</span>
+                        <span>{{__('Fixed top')}}</span>
                         <div class="switch">
                             <div class="onoffswitch">
                                 <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox" id="fixednavbar">
@@ -138,7 +137,7 @@
                         </div>
                     </div>
                     <div class="setings-item">
-                        <span>固定宽度</span>
+                        <span>{{__('Fixed width')}}</span>
                         <div class="switch">
                             <div class="onoffswitch">
                                 <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox" id="boxedlayout">

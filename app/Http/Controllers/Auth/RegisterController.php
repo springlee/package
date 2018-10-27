@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\EnterpriseCompany;
+use App\Models\User;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -43,13 +44,13 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'enterprise_company_name' => ['required', 'string', 'max:255', 'unique:enterprise_companies'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -58,15 +59,24 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \App\Models\User
      */
     protected function create(array $data)
     {
+
+        $enterpriseCompany = EnterpriseCompany::create([
+            'enterprise_company_name' => $data['enterprise_company_name']
+        ]);
+
         return User::create([
-            'name' => $data['name'],
+            'name' => $data['email'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'enterprise_company_id' => $enterpriseCompany->id,
+            'user_type' =>User::TYPE_MANGER,
+            'status' => User::STATUS_ACTIVE,
+            'local'=>'zh_CN'
         ]);
     }
 }

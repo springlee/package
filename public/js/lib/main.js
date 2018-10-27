@@ -21,33 +21,49 @@ $.ajaxSetup({
 });
 
 function initDateRange() {
-    //定义locale汉化插件
-    var locale = {
-        "format": 'YYYY-MM-DD',
-        "separator": " - ",
-        "applyLabel": "确定",
-        "cancelLabel": "取消",
-        "fromLabel": "起始时间",
-        "toLabel": "结束时间'",
-        "customRangeLabel": "自定义",
-        "weekLabel": "W",
-        "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"],
-        "monthNames": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-        "firstDay": 1
-    };
+    if(_locale==='en'){
+        var date_locale = {
+            "format": 'YYYY-MM-DD',
+            "separator": " - ",
+            "firstDay": 1,
+        };
+        var ranges ={
+            'Today': [moment(), moment().add(1, 'days')],
+            'Yesterday': [moment().subtract(1, 'days'), moment()],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment().add(1, 'days')],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment().add(1, 'days')],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }else{
+        var date_locale = {
+            "format": 'YYYY-MM-DD',
+            "separator": " - ",
+            "applyLabel": "确定",
+            "cancelLabel": "取消",
+            "fromLabel": "起始时间",
+            "toLabel": "结束时间'",
+            "customRangeLabel": "自定义",
+            "weekLabel": "W",
+            "daysOfWeek": ["日", "一", "二", "三", "四", "五", "六"],
+            "monthNames": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            "firstDay": 1
+        };
+        var ranges ={
+            '今日': [moment(), moment().add(1, 'days')],
+            '昨日': [moment().subtract(1, 'days'), moment()],
+            '最近7日': [moment().subtract(6, 'days'), moment().add(1, 'days')],
+            '最近30日': [moment().subtract(29, 'days'), moment().add(1, 'days')],
+            '本月': [moment().startOf('month'), moment().endOf('month')],
+            '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }
     $('.date-range').daterangepicker({
             opens: "center",
             showDropdowns: false,
-            locale: locale,
+            locale: date_locale,
             autoUpdateInput: false,
-            ranges: {
-                '今日': [moment(), moment().add(1, 'days')],
-                '昨日': [moment().subtract(1, 'days'), moment()],
-                '最近7日': [moment().subtract(6, 'days'), moment().add(1, 'days')],
-                '最近30日': [moment().subtract(29, 'days'), moment().add(1, 'days')],
-                '本月': [moment().startOf('month'), moment().endOf('month')],
-                '上月': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            },
+            ranges: ranges
         },
         function (start, end) {
             $('.date-range').val(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
@@ -200,7 +216,7 @@ function operateFormatter(value, row, index) {
         buttons.push({
             name: 'edit',
             icon: 'fa fa-pencil',
-            title: '编辑',
+            title: language.edit,
             class_name: 'btn btn-xs btn-success btn-edit-one',
             url: tableOperate.edit_url + '/' + row.id
         });
@@ -210,7 +226,7 @@ function operateFormatter(value, row, index) {
         buttons.push({
             name: 'del',
             icon: 'fa fa-trash',
-            title: '删除',
+            title: language.delete,
             class_name: 'btn btn-xs btn-danger btn-del-one',
             url: tableOperate.del_url + '/' + row.id
         });
@@ -277,7 +293,7 @@ $(document).ready(function () {
             event.preventDefault();
             var formObj = $(".autoJqValidator");
             if (formObj.valid(this) === false) {
-                toastr.error('信息不完整');
+                toastr.error(language.input_valid);
                 return false;
             }
             if (typeof formObj.data('ajax') !== 'undefined') {
@@ -357,8 +373,8 @@ $(document).ready(function () {
     });
     $(document).on('click', '.btn-del-one', function () {
         var url = $(this).attr('href');
-        layer.confirm('删除这条数据吗？', {
-            btn: ['确定', '取消'],
+        layer.confirm(language.make_sure_delete, {
+            btn: [language.submit, language.cancel],
         }, function (index) {
             $.get(url, {}, AjaxRequest, 'json');
             layer.close(index);
@@ -385,27 +401,6 @@ $(document).ready(function () {
         var content = $(this).closest('div.ibox');
         content.remove();
     });
-    //返回顶部
-    // var goTop = '<div class="gohome" id="toTop" >' +
-    //     '<a class="animated bounceInUp"  title="返回顶部">' +
-    //     '<i class="fa fa-arrow-circle-up" style="font-size: 20px;"></i></a>' +
-    //     '</div>';
-    // $("body").append(goTop);
-    //
-    // $(window).scroll(function (event) {
-    //     if ($(this).scrollTop() === 0) {
-    //         $("#toTop").hide();
-    //     }
-    //     if ($(this).scrollTop() !== 0) {
-    //         $("#toTop").show();
-    //     }
-    // });
-    // $("#toTop").on('click', function () {
-    //     $("html,body").animate({
-    //             scrollTop: "0px"
-    //         }, 300
-    //     )
-    // });
 
     $('#myTab a').on('click', function (e) {
         e.preventDefault();
@@ -432,7 +427,6 @@ $(document).ready(function () {
         var options = {elem: "#" + id, event: "focus", format: format, istime: istime, choose: callback};
         laydate(options);
     });
-
     $('.refresh-link').bind('click', function () {
         window.location.reload();
     });

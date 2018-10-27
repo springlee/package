@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Http\Requests\Request;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -14,6 +15,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         //
+        InvalidRequestException::class,
     ];
 
     /**
@@ -28,6 +30,8 @@ class Handler extends ExceptionHandler
 
     /**
      * Report or log an exception.
+     *
+     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
      *
      * @param  \Exception  $exception
      * @return void
@@ -47,5 +51,11 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         return parent::render($request, $exception);
+        if ($request->expectsJson() && !($exception instanceof InvalidRequestException)) {
+            return response()->json(['success' => false, 'message'=>'系统错误']);
+        }else{
+            return parent::render($request, $exception);
+        }
+
     }
 }
