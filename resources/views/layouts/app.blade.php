@@ -17,7 +17,7 @@
     <link href="{{load('/css/lib/bootstrap-table.min.css')}}" rel="stylesheet">
     <link href="{{load('/css/lib/toastr.min.css')}}" rel="stylesheet">
     <link href="{{load('/css/lib/daterangepicker.css')}}" rel="stylesheet">
-    <link href="{{load('/css/lib/admin.css')}}" rel="stylesheet">
+    {{--<link href="{{load('/css/lib/admin.css')}}" rel="stylesheet">--}}
     <link href="{{load('/css/lib/style.min.css')}}" rel="stylesheet">
     <link href="{{load('/css/lib/switchery.css')}}" rel="stylesheet">
     @yield('css')

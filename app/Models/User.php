@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use EloquentFilter\Filterable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable,Filterable;
+
     const TYPE_MANGER = 'manger';
     const TYPE_NORMAL = 'normal';
 

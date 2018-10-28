@@ -14,7 +14,7 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li>
-                            <a href="{{ route('user.password.reset') }}" class="J_menuItem" href="" data-index="0">
+                            <a href="{{ route('_users.password.reset') }}" class="J_menuItem" href="" data-index="0">
                                 {{ __('Reset Password') }}
                             </a>
                         </li>
@@ -96,7 +96,7 @@
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">{{__('Users')}}</a>
+                        <a class="J_menuItem" href="{{route('_users.index')}}" data-index="0">{{__('Users')}}</a>
                     </li>
                 </ul>
             </li>

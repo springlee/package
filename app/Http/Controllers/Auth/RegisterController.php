@@ -76,7 +76,6 @@ class RegisterController extends Controller
             'enterprise_company_id' => $enterpriseCompany->id,
             'user_type' =>User::TYPE_MANGER,
             'status' => User::STATUS_ACTIVE,
-            'local'=>'zh_CN'
         ]);
     }
 }

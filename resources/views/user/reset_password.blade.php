@@ -9,7 +9,7 @@
                         <h5>{{__('Reset Password')}}</h5>
                     </div>
                     <div class="ibox-content">
-                        <form class="form-horizontal autoJqValidator" data-ajax="{{route('user.password.update')}}">
+                        <form class="form-horizontal autoJqValidator" data-ajax="{{route('_users.password.update')}}">
                             <div class="form-group">
                                 <label for="password" class="control-label col-xs-12 col-sm-2">{{ __('Password') }}:</label>
                                 <div class="col-xs-12 col-sm-8">

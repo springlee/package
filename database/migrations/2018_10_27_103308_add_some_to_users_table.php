@@ -16,8 +16,7 @@ class AddSomeToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedInteger('enterprise_company_id')->after('remember_token');
             $table->date('expiry_date')->after('enterprise_company_id');
-            $table->string('local')->after('expiry_date');
-            $table->string('user_type')->after('local');
+            $table->string('user_type')->after('expiry_date');
             $table->string('status')->after('user_type');
             $table->index('enterprise_company_id');
             $table->index('status');
