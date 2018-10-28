@@ -19,13 +19,13 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    const STATUS_ACTIVE = 'active';
-    const STATUS_FROZEN = 'frozen';
+    const STATUS_ENABLE = 'enable';
+    const STATUS_DISABLE = 'disable';
 
 
     public static $statusMap = [
-        self::STATUS_ACTIVE => '激活中',
-        self::STATUS_FROZEN => '冻结中',
+        self::STATUS_ENABLE => '启用中',
+        self::STATUS_DISABLE => '禁用中',
     ];
 
     /**

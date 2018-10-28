@@ -34,69 +34,69 @@
             <li>
                 <a href="#">
                     <i class="fa fa fa-truck"></i>
-                    <span class="nav-label">快递包裹管理</span>
+                    <span class="nav-label">{{__('Package Manage')}}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">快递包裹列表</a>
+                        <a class="J_menuItem" href="" data-index="0">{{__('Packages')}}</a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">快递包裹签收</a>
+                        <a class="J_menuItem" href="" data-index="0">{{__('Package Sign')}}</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#">
                     <i class="fa  fa-bar-chart"></i>
-                    <span class="nav-label">报表管理</span>
+                    <span class="nav-label">{{__('Report Manage')}}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">快递包裹报表</a>
+                        <a class="J_menuItem" href="" data-index="0">{{__('Package Report')}}</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#">
                     <i class="fa fa-dollar"></i>
-                    <span class="nav-label">财务管理</span>
+                    <span class="nav-label">{{__('Finance Manage')}}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">我的产品</a>
+                        <a class="J_menuItem" href="" data-index="0">{{__('My Product')}}</a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">快递包裹确认</a>
+                        <a class="J_menuItem" href="" data-index="0">{{__('Package Confirm')}}</a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">产品服务</a>
+                        <a class="J_menuItem" href="" data-index="0">{{__('Product Service')}}</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#">
                     <i class="fa  fa-cog"></i>
-                    <span class="nav-label">基础资料管理</span>
+                    <span class="nav-label">{{__('Basic data Manage')}}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">物流公司列表</a>
+                        <a class="J_menuItem" href="{{route('logistics_companies.index')}}" data-index="0">{{__('Logistics Companies')}}</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <a href="#">
                     <i class="fa fa-user"></i>
-                    <span class="nav-label">用户管理</span>
+                    <span class="nav-label">{{__('User Manage')}}</span>
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">用户列表</a>
+                        <a class="J_menuItem" href="" data-index="0">{{__('Users')}}</a>
                     </li>
                 </ul>
             </li>

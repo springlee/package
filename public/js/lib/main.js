@@ -21,13 +21,13 @@ $.ajaxSetup({
 });
 
 function initDateRange() {
-    if(_locale==='en'){
+    if (_locale === 'en') {
         var date_locale = {
             "format": 'YYYY-MM-DD',
             "separator": " - ",
             "firstDay": 1,
         };
-        var ranges ={
+        var ranges = {
             'Today': [moment(), moment().add(1, 'days')],
             'Yesterday': [moment().subtract(1, 'days'), moment()],
             'Last 7 Days': [moment().subtract(6, 'days'), moment().add(1, 'days')],
@@ -35,7 +35,7 @@ function initDateRange() {
             'This Month': [moment().startOf('month'), moment().endOf('month')],
             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         }
-    }else{
+    } else {
         var date_locale = {
             "format": 'YYYY-MM-DD',
             "separator": " - ",
@@ -49,7 +49,7 @@ function initDateRange() {
             "monthNames": ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
             "firstDay": 1
         };
-        var ranges ={
+        var ranges = {
             '今日': [moment(), moment().add(1, 'days')],
             '昨日': [moment().subtract(1, 'days'), moment()],
             '最近7日': [moment().subtract(6, 'days'), moment().add(1, 'days')],
@@ -243,12 +243,25 @@ function detailFormatter(value, row, index) {
 }
 
 function statusFormatter(value, row, index) {
-    if(typeof value==='undefined'){
+    if (typeof value === 'undefined') {
         return '';
-    }else {
+    } else {
         var color = typeof tableOperate.custom[row.status] !== 'undefined' ? tableOperate.custom[row.status] : 'primary';
-        return  '<span id="status-' + row.id + '"  data-status="' + row.status + '" class="status text-' + color + '"><i class="fa fa-circle"></i>'+ value + '</span>';
+        return '<span id="status-' + row.id + '"  data-status="' + row.status + '" class="status text-' + color + '"><i class="fa fa-circle"></i>' + value + '</span>';
     }
+
+}
+
+function activeFormatter(value, row, index) {
+    var active_url='';
+    if (tableOperate.active_url !== '' && tableOperate.active_url !== undefined) {
+        active_url=tableOperate.active_url+'/' + row.id
+    }
+    var checked = '';
+    if(value==='enable'){
+        checked ='checked';
+    }
+    return '<input type="checkbox" class="js-check-change" '+checked+' data-ajax="'+active_url+'"/>';
 
 }
 
@@ -307,7 +320,11 @@ $(document).ready(function () {
         stickyHeader: true,
         stickyHeaderOffsetY: 0 + 'px',
         pageNumber: 1
-    })
+    }).on('load-success.bs.table', function () {
+        $('#table .js-check-change').each(function (index,value) {
+            new Switchery(value,{size: 'small'});
+        })
+    });
 
     $('.table-search-btn').on('click', function (event) {  // 点击查询
         event.preventDefault();
@@ -430,4 +447,22 @@ $(document).ready(function () {
     $('.refresh-link').bind('click', function () {
         window.location.reload();
     });
+
+    $(document).on('change','.js-check-change', function () {
+        var checked = $(this).prop('checked');
+        $.ajax({
+            type: 'POST',
+            url: $(this).data('ajax'),
+            data: {checked: checked},
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    toastr.success(data.message);
+                } else {
+                    toastr.error(data.message);
+                }
+            },
+        });
+    });
+
 })
