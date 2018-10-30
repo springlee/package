@@ -33,7 +33,8 @@ class UserRequest extends Request
                     return $query->where('email', $this->user()->email);
                 })
             ],
-            'password' => ['required', 'string', 'min:6', 'confirmed']
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            "roles"=>['required','array','exists:roles,name']
         ];
     }
 

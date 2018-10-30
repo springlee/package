@@ -68,14 +68,15 @@ class RegisterController extends Controller
         $enterpriseCompany = EnterpriseCompany::create([
             'enterprise_company_name' => $data['enterprise_company_name']
         ]);
-
-        return User::create([
+        $user =  User::create([
             'name' => $data['email'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'enterprise_company_id' => $enterpriseCompany->id,
             'user_type' =>User::TYPE_MANGER,
-            'status' => User::STATUS_ACTIVE,
+            'status' => User::STATUS_ENABLE,
         ]);
+        $user->assignRole('Admin');
+        return $user;
     }
 }

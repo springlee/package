@@ -60,8 +60,22 @@
   "Packages":"包裹列表",
   "Package Sign":"包裹签收",
   "My Product":"我的产品",
-  "Package Confirm":"包裹确认",
+  "Package Confirm":"包裹对账",
   "Product Service":"产品服务",
   "Status":"状态",
-  "User":"用户"
+  "User":"用户",
+  "Forbidden":"禁止访问",
+  "Your account is disabled.":"您的账号被禁用了",
+  "Role":"角色",
+  "Merchandiser":"跟单员",
+  "Financial staff":"财务人员",
+  "Supplier":"供应商",
+  "Package Manger":"包裹经理",
+  "Warehouseman":"仓库管理员",
+  "package_info_input":"包裹录入",
+  "package_receive":" 包裹签收",
+  "report":" 包裹管理",
+  "finance":" 财务管理",
+  "Admin":"管理员"
+
 }

@@ -107,7 +107,7 @@
             <div id="tab-1" class="tab-pane active">
                 <div class="sidebar-title">
                     <h3><i class="fa fa-comments-o"></i>{{__('Theme')}}{{__('Setting')}}</h3>
-                    <small><i class="fa fa-tim"></i> You can select and preview the layout and style of the theme from here, and these settings are saved locally and applied directly the next time you open them.</small>
+                    <small><i class="fa fa-tim"></i>{{__('You can select and preview the layout and style of the theme from here, and these settings are saved locally and applied directly the next time you open them.')}}</small>
                 </div>
                 <div class="skin-setttings">
                     <div class="title">{{__('Theme')}}{{__('Setting')}}</div>

@@ -6,10 +6,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use EloquentFilter\Filterable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable,Filterable;
+    use HasRoles;
+
 
     const TYPE_MANGER = 'manger';
     const TYPE_NORMAL = 'normal';

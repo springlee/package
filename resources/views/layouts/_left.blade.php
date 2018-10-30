@@ -8,8 +8,8 @@
                     <span><img alt="image" class="img-circle" src="images/user.png" width="70" height="70"/></span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
-                            <span class="block m-t-xs"><strong class="font-bold">{{ Auth::user()->email }}</strong></span>
-                            <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                            <span class="block m-t-xs"><strong class="font-bold">{{ Auth::user()->name }}</strong></span>
+                            <span class="text-muted text-xs block">{{$role_info}}<b class="caret"></b></span>
                         </span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -31,6 +31,7 @@
                 </div>
                 <div class="logo-element">PACK</div>
             </li>
+            @hasanyrole('Admin|Supplier|Merchandiser|Warehouseman|Package Manger')
             <li>
                 <a href="#">
                     <i class="fa fa fa-truck"></i>
@@ -38,14 +39,20 @@
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
+                    @can('package_info_input')
                     <li>
                         <a class="J_menuItem" href="" data-index="0">{{__('Packages')}}</a>
                     </li>
+                    @endcan
+                    @can('package_receive')
                     <li>
                         <a class="J_menuItem" href="" data-index="0">{{__('Package Sign')}}</a>
                     </li>
+                    @endcan
                 </ul>
             </li>
+            @endhasanyrole
+            @can('report')
             <li>
                 <a href="#">
                     <i class="fa  fa-bar-chart"></i>
@@ -53,11 +60,13 @@
                     <span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level">
-                    <li>
-                        <a class="J_menuItem" href="" data-index="0">{{__('Package Report')}}</a>
-                    </li>
+                        <li>
+                            <a class="J_menuItem" href="" data-index="0">{{__('Package Report')}}</a>
+                        </li>
                 </ul>
             </li>
+            @endcan
+            @can('finance')
             <li>
                 <a href="#">
                     <i class="fa fa-dollar"></i>
@@ -76,6 +85,8 @@
                     </li>
                 </ul>
             </li>
+            @endcan
+            @hasrole('Package Manger')
             <li>
                 <a href="#">
                     <i class="fa  fa-cog"></i>
@@ -88,6 +99,8 @@
                     </li>
                 </ul>
             </li>
+            @endhasrole
+            @hasrole('Admin')
             <li>
                 <a href="#">
                     <i class="fa fa-user"></i>
@@ -100,6 +113,7 @@
                     </li>
                 </ul>
             </li>
+            @endhasrole
         </ul>
     </div>
 </nav>

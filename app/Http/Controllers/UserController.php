@@ -10,6 +10,7 @@ use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -40,7 +41,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('user.create_and_edit', ['user' => new User()]);
+        $roles = Role::query()->where('name','!=','Admin')->get();
+        return view('user.create_and_edit', ['user' => new User(),'roles'=>$roles]);
     }
 
     public function store(UserRequest $request,User $user)
@@ -53,12 +55,14 @@ class UserController extends Controller
         $user->user_type= User::TYPE_NORMAL;
         $user->enterprise_company_id= \Auth::user()->enterprise_company_id;
         $user->save();
+        $user->assignRole($request->roles);
         return response()->json(['success' => true, 'message' => '新增成功']);
     }
 
     public function edit(User $user)
     {
-        return view('user.create_and_edit', ['user' => $user]);
+        $roles = Role::query()->where('name','!=','Admin')->get();
+        return view('user.create_and_edit', ['user' => $user,'roles'=>$roles]);
     }
 
     public function update(UserRequest $request, User $user)
@@ -69,6 +73,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->save();
+        $user->syncRoles($request->roles);
         return response()->json(['success' => true, 'message' => '修改成功']);
     }
 

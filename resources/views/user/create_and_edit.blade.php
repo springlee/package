@@ -38,6 +38,16 @@
                                            <input id="password_confirmation" class="form-control" name="password_confirmation" type="password" value="{{$user->id?'3ArAiVfZ':''}}" required>
                                        </div>
                                    </div>
+                                   <div class="form-group">
+                                       <label for="password_confirmation" class="control-label col-xs-12 col-sm-2">{{ __('Role') }}:</label>
+                                       <div class="col-xs-12 col-sm-8">
+                                           @foreach($roles as $role)
+                                               <label class="checkbox-inline i-checks">
+                                                   <input  type="checkbox" value="{{$role->name}}" name="roles[]" class="search-tab" {{$user->hasRole($role->name)?'checked':''}} data-rel="{{$role->name}}">{{__($role->name)}}
+                                               </label>
+                                           @endforeach
+                                       </div>
+                                   </div>
                             <div class="form-group layer-footer">
                                 <label class="control-label col-xs-12 col-sm-2"></label>
                                 <div class="col-xs-12 col-sm-8">

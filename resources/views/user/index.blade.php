@@ -73,6 +73,8 @@
                                 <tr>
                                     <th data-align="center" data-field="name">{{__('Name')}}</th>
                                     <th data-align="center" data-field="email">{{__('Email')}}</th>
+                                    <th data-align="center" data-field="role_info">{{__('Role')}}</th>
+                                    <th data-align="center" data-field="permission_info">{{__('Permission')}}</th>
                                     <th data-align="center" data-field="created_at">{{__('Created at')}}</th>
                                     <th data-align="center" data-field="status" data-formatter="activeFormatter">{{__('Status')}}</th>
                                     <th data-align="center" data-field="operate" data-formatter="operateFormatter">{{__('Operate')}}
