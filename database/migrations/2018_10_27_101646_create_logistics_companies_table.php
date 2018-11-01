@@ -16,6 +16,7 @@ class CreateLogisticsCompaniesTable extends Migration
         Schema::create('logistics_companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('logistics_company_name');
+            $table->string('logistics_company_code');
             $table->unsignedInteger('enterprise_company_id');
             $table->unsignedInteger('create_user_id');
             $table->string('status');

@@ -10,4 +10,8 @@ class EnterpriseCompany extends Model
     protected $fillable = [
         'enterprise_company_name',
     ];
+
+    public function logisticsCompanies(){
+        return $this->hasMany(LogisticsCompany::class);
+    }
 }

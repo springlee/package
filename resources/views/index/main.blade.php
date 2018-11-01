@@ -171,7 +171,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-4">
+                                <div class="">
                                     <div class="card sameheight-item stats">
                                         <div class="card-block">
                                             <div class="row row-sm stats-container">

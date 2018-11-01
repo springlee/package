@@ -41,7 +41,7 @@
                 <ul class="nav nav-second-level">
                     @can('package_info_input')
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">{{__('Packages')}}</a>
+                        <a class="J_menuItem" href="{{route("package.merchandiser.index")}}" data-index="0">{{__('Packages')}}</a>
                     </li>
                     @endcan
                     @can('package_receive')
@@ -86,7 +86,7 @@
                 </ul>
             </li>
             @endcan
-            @hasrole('Package Manger')
+            @hasanyrole('Package Manger|Admin')
             <li>
                 <a href="#">
                     <i class="fa  fa-cog"></i>
@@ -99,7 +99,7 @@
                     </li>
                 </ul>
             </li>
-            @endhasrole
+            @endhasanyrole
             @hasrole('Admin')
             <li>
                 <a href="#">

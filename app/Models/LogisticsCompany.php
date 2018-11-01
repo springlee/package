@@ -18,8 +18,12 @@ class LogisticsCompany extends Model
     ];
     protected $fillable = [
         'logistics_company_name',
+        'logistics_company_code',
         'enterprise_company_id',
         'create_user_id',
         'status'
     ];
+
+
+
 }

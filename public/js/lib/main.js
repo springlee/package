@@ -246,11 +246,21 @@ function statusFormatter(value, row, index) {
     if (typeof value === 'undefined') {
         return '';
     } else {
-        var color = typeof tableOperate.custom[row.status] !== 'undefined' ? tableOperate.custom[row.status] : 'primary';
+        var color = typeof tableOperate.status[row.status] !== 'undefined' ? tableOperate.status[row.status] : 'primary';
         return '<span id="status-' + row.id + '"  data-status="' + row.status + '" class="status text-' + color + '"><i class="fa fa-circle"></i>' + value + '</span>';
     }
 
 }
+function typeFormatter(value, row, index) {
+    if (typeof value === 'undefined') {
+        return '';
+    } else {
+        var color = typeof tableOperate.type[row.type] !== 'undefined' ? tableOperate.type[row.type] : 'primary';
+        return '<span id="type-' + row.id + '"  data-type="' + row.type + '" class="status text-' + color + '"><i class="fa fa-circle"></i>' + value + '</span>';
+    }
+
+}
+
 
 function activeFormatter(value, row, index) {
     var active_url='';

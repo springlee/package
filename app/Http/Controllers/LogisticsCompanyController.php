@@ -29,6 +29,7 @@ class LogisticsCompanyController extends Controller
     public function store(LogisticsCompanyRequest $request,LogisticsCompany $logisticsCompany)
     {
         $logisticsCompany->logistics_company_name = $request->logistics_company_name;
+        $logisticsCompany->logistics_company_code = $request->logistics_company_code;
         $logisticsCompany->enterprise_company_id =  $request->user()->enterprise_company_id;
         $logisticsCompany->status = LogisticsCompany::STATUS_ENABLE;
         $logisticsCompany->create_user_id = $request->user()->id;
@@ -45,6 +46,7 @@ class LogisticsCompanyController extends Controller
     {
         $logisticsCompany->update($request->only([
             'logistics_company_name',
+            'logistics_company_code'
         ]));
         return response()->json(['success' => true, 'message' => '修改成功']);
     }

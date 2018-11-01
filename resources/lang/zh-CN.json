@@ -74,8 +74,9 @@
   "Warehouseman":"仓库管理员",
   "package_info_input":"包裹录入",
   "package_receive":" 包裹签收",
-  "report":" 包裹管理",
+  "report":" 报表管理",
   "finance":" 财务管理",
-  "Admin":"管理员"
-
+  "Admin":"管理员",
+  "Permission":"权限",
+  "Logistics Company Code":"物流公司编码"
 }

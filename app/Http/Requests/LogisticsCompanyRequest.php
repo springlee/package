@@ -18,7 +18,8 @@ class LogisticsCompanyRequest extends Request
                    }
                    return $query->where('enterprise_company_id',$this->user()->enterprise_company_id);
                })
-           ]
+           ],
+           'logistics_company_code'=>['required'],
         ];
     }
     public function attributes()

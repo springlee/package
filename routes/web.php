@@ -28,14 +28,37 @@ Route::middleware(['setLocale'])->group(function () {
         Route::get('user/password/reset', 'UserController@resetPasswordForm')->name('_users.password.reset');
         Route::post('user/password/reset', 'UserController@resetPassword')->name('_users.password.update');
 
-        //包裹的正删改查
+
+        //
+        Route::get('packages/logistics/{package?}', 'PackageController@logistics')->name('package.logistics');
+
+        //包裹的增改
+        Route::middleware(['permission:package_info_input'])->group(function () {
+            Route::get('packages/merchandiser', 'PackageController@merchandiserIndex')->name('package.merchandiser.index');
+            Route::post('packages/merchandiser/list', 'PackageController@merchandiserList')->name('package.merchandiser.list');
+            Route::get('packages/merchandiser/create', 'PackageController@merchandiserCreate')->name('package.merchandiser.create');
+            Route::post('packages/merchandiser/store', 'PackageController@merchandiserStore')->name('package.merchandiser.store');
+            Route::get('packages/merchandiser/{package?}', 'PackageController@merchandiserEdit')->name('package.merchandiser.edit');
+            Route::post('packages/merchandiser/{package}', 'PackageController@merchandiserUpdate')->name('package.merchandiser.update');
+            Route::post('packages/merchandiser/import', 'PackageController@merchandiserImport')->name('package.merchandiser.import');
+        });
 
         //签收
+        Route::middleware(['permission:package_receive'])->group(function () {
+            Route::get('packages/warehouseman', 'PackageController@warehousemanIndex')->name('package.warehouseman.index');
+            Route::post('packages/warehouseman/list', 'PackageController@warehousemanList')->name('package.warehouseman.list');
+            Route::post('packages/warehouseman/import', 'PackageController@warehousemanImport')->name('package.warehouseman.import');
+            Route::get('packages/warehouseman/{package}/receive', 'PackageController@warehousemanImport')->name('package.warehouseman.import');
+            Route::get('packages/warehouseman/{package}/receive', 'PackageController@warehousemanImport')->name('package.warehouseman.import');
+        });
 
         //确认
+        Route::middleware(['permission:package_receive'])->group(function () {
+            Route::get('packages/report', 'PackageController@reportIndex')->name('package.report.index');
+            Route::post('packages/report/list', 'PackageController@reportList')->name('package.report.list');
+        });
 
 
-        //产品相关
 
 
 
@@ -49,7 +72,7 @@ Route::middleware(['setLocale'])->group(function () {
             Route::post('users/active/{user?}', 'UserController@active')->name('_users.active');
         });
 
-        Route::middleware(['role:Package Manger'])->group(function () {
+        Route::middleware(['role:Package Manger|Admin'])->group(function () {
             Route::get('logistics_companies', 'LogisticsCompanyController@index')->name('logistics_companies.index');
             Route::post('logistics_companies/list',
                 'LogisticsCompanyController@list')->name('logistics_companies.list');

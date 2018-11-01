@@ -34,9 +34,9 @@ class UserController extends Controller
         return view('user.index');
     }
 
-    public function list(Request $request, UserService $user)
+    public function list(Request $request, UserService $userService)
     {
-        return response()->json($user->list($request->all()));
+        return response()->json($userService->list($request->all()));
     }
 
     public function create()
