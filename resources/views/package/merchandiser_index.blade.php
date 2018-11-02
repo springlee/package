@@ -71,6 +71,9 @@
                                             <button class="btn btn-sm btn-default" type="reset">
                                                 {{__('Reset')}}
                                             </button>
+                                            <button class="btn btn-sm btn-primary btn-outline   checkbox-all-action" data-ajax="{{route('package.download')}}" data-info="你确定要下载当前包裹信息吗?">
+                                                <i class="fa fa-download"></i>下载
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -82,6 +85,7 @@
                                    title="{{__('Create')}}">
                                     <i class="fa fa-plus"></i>{{__('Create')}}
                                 </a>
+                                <a href="{{route('package.merchandiser.import')}}"  class="btn btn-sm btn-primary btn-edit-one" title="包裹新建导入" data-width="300px" data-height="200px">导入</a>
                             </div>
                             <table id="table"
                                    data-toggle="table"
@@ -125,11 +129,13 @@
 @endsection
 @section('js')
     <script>
-
         function logisticsFormatter(value, row, index) {
           return '<span data-id="' + row.id + '" class="btn btn-xs btn-primary btn-logistics-one" ><i class="fa fa-eye"></i></span>';
         }
-
+        function importSuccess() {
+            toastr.success('上传成功');
+            refreshTableData();
+        }
         tableOperate = {
             edit_url: '{{route('package.merchandiser.edit')}}',
             type:{'normal':'info','urgent':'success','immediately':'danger'},

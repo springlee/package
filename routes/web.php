@@ -31,16 +31,19 @@ Route::middleware(['setLocale'])->group(function () {
 
         //
         Route::get('packages/logistics/{package?}', 'PackageController@logistics')->name('package.logistics');
-
+        Route::post('packages/download', 'PackageController@download')->name('package.download');
         //包裹的增改
         Route::middleware(['permission:package_info_input'])->group(function () {
+
             Route::get('packages/merchandiser', 'PackageController@merchandiserIndex')->name('package.merchandiser.index');
             Route::post('packages/merchandiser/list', 'PackageController@merchandiserList')->name('package.merchandiser.list');
             Route::get('packages/merchandiser/create', 'PackageController@merchandiserCreate')->name('package.merchandiser.create');
             Route::post('packages/merchandiser/store', 'PackageController@merchandiserStore')->name('package.merchandiser.store');
             Route::get('packages/merchandiser/{package?}', 'PackageController@merchandiserEdit')->name('package.merchandiser.edit');
             Route::post('packages/merchandiser/{package}', 'PackageController@merchandiserUpdate')->name('package.merchandiser.update');
-            Route::post('packages/merchandiser/import', 'PackageController@merchandiserImport')->name('package.merchandiser.import');
+            Route::get('packages/merchandiser_import', 'PackageController@merchandiserImport')->name('package.merchandiser.import');
+            Route::post('packages/merchandiser_import_save', 'PackageController@merchandiserImportSave')->name('package.merchandiser.import.save');
+
         });
 
         //签收

@@ -45,4 +45,15 @@ class Package extends Model
         return $this->hasOne(LogisticsCompany::class,'id','logistics_company_id');
     }
 
+    public function createUser(){
+
+        return $this->hasOne(User::class,'id','create_user_id');
+    }
+
+
+    public function receiveUser(){
+        return $this->hasOne(User::class,'id','receive_user_id');
+
+    }
+
 }

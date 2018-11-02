@@ -20,7 +20,10 @@ class PackageRequest extends Request
                    return $query->where('enterprise_company_id',$this->user()->enterprise_company_id);
                })
            ],
-            'logistics_company_id'=>['required','exists:logistics_companies,id'],
+            'logistics_company_id'=>['required',
+                Rule::exists('logistics_companies','id')->where(function ($query) {
+                    return $query->where('enterprise_company_id', \Auth::user()->enterprise_company_id);
+                })],
             'type'=>['required', Rule::in(array_keys(Package::$typeMap))],
             'package_quantity'=>['required', 'integer', 'min:1'],
         ];

@@ -170,6 +170,10 @@ return [
         'time'                  => '时间',
         'available'             => '可用的',
         'size'                  => '大小',
-        'enterprise_company_name' =>'企业公司名称'
+        'enterprise_company_name' =>'企业公司名称',
+        'logistics_tracking_number' => '物流单号',
+        'logistics_company_name' => '物流公司',
+        'package_type' => '包裹类型',
+        'package_quantity' => '包裹数量',
     ],
 ];

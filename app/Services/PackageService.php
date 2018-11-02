@@ -11,6 +11,7 @@ class PackageService
 
     public function list($where)
     {
+        $where['enterprise_company_id'] = \Auth::user()->enterprise_company_id;
         $package = Package::query()
             ->with('logisticsCompany')
             ->filter($where)

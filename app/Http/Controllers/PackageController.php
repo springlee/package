@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvalidRequestException;
+use App\Exports\PackageExport;
 use App\Http\Requests\PackageRequest;
+use App\Imports\PackageImport;
 use App\Models\Package;
 use App\Services\PackageService;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\HeadingRowImport;
 
 class PackageController extends Controller
 {
@@ -63,30 +67,62 @@ class PackageController extends Controller
     public function logistics(Package $package)
     {
 
-        $url = "http://www.kuaidi100.com/applyurl?key=2e8c3920fe6c7767&com=".($package->logisticsCompany->logistics_company_code)."&nu=".$package->logistics_tracking_number;
+        $url = "http://www.kuaidi100.com/applyurl?key=2e8c3920fe6c7767&com=" . ($package->logisticsCompany->logistics_company_code) . "&nu=" . $package->logistics_tracking_number;
         $http = new Client();
         $data = $http->get($url)->getBody()->getContents();
-        if($data){
-            return response()->json(['success' => true, 'message' => '请求成功','url'=>$data]);
-        }else{
+        if ($data) {
+            return response()->json(['success' => true, 'message' => '请求成功', 'url' => $data]);
+        } else {
             return response()->json(['success' => false, 'message' => '请求失败']);
         }
+    }
 
+    public function download(Request $request)
+    {
+        $filename = '包裹信息-' . date('YmdHis') . '.xlsx';
+        $where = $request->all();
+        $where['enterprise_company_id'] = \Auth::user()->enterprise_company_id;
+        (new PackageExport($where))->store($filename, 'public');
+        return response()->json(['success' => true, 'message' => '下载成功', 'url' => url('/storage/') . '/' . $filename]);
     }
 
 
-    public function active(Request $request, User $user)
+    public function merchandiserImport()
     {
-        $user->status = $request->checked === 'true' ? User::STATUS_ENABLE : User::STATUS_DISABLE;
-        $user->save();
-        return response()->json(['success' => true, 'message' => __('Deal with success')]);
+        return view('package.merchandiser_import');
     }
 
-    public function forbidden(Request $request)
+    public function merchandiserImportSave(Request $request)
     {
-        if ($request->user()->status === User::STATUS_ENABLE) {
-            return redirect('/');
+        try {
+
+            $file = $request->file('xlsx');
+            //校验文件
+            if (isset($file) && $file->isValid()) {
+                $ext = $file->getClientOriginalExtension(); //上传文件的后缀
+                //判断是否是Excel
+                if (empty($ext) or in_array(strtolower($ext), ['xlsx']) === false) {
+                    throw new InvalidRequestException('不允许的文件类型');
+                }
+            } else {
+                throw new InvalidRequestException('文件非法');
+            }
+            \DB::transaction(function () use ($file) {
+                (new PackageImport())->import($file);
+            });
+            echo '<script type="text/javascript" language="javascript">';
+            echo 'parent.importSuccess();';
+            echo 'var index = parent.layer.getFrameIndex(window.name);';
+            echo 'parent.layer.close(index);';
+            echo '</script>';
+            exit;
+        } catch (\Exception $exception) {
+            echo '<script type="text/javascript" language="javascript">';
+            echo 'parent.toastr.error("' . $exception->getMessage() . '");';
+            echo '</script>';
         }
-        return view('user.disable');
+        return view('package.merchandiser_import');
     }
+
 }
+
