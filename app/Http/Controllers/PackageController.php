@@ -10,7 +10,6 @@ use App\Models\Package;
 use App\Services\PackageService;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\HeadingRowImport;
 
 class PackageController extends Controller
 {
@@ -122,6 +121,21 @@ class PackageController extends Controller
             echo '</script>';
         }
         return view('package.merchandiser_import');
+    }
+
+
+    public function warehousemanIndex()
+    {
+        $types = Package::$typeMap;
+        $statuses = Package::$statusMap;
+        $logisticsCompanies = \Auth::user()->enterpriseCompany->logisticsCompanies;
+        return view('package.warehouse_index', compact('types', 'statuses', 'logisticsCompanies'));
+    }
+
+
+    public function warehousemanList(Request $request, PackageService $packageService)
+    {
+        return response()->json($packageService->list($request->all()));
     }
 
 }

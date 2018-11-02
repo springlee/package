@@ -46,7 +46,7 @@
                     @endcan
                     @can('package_receive')
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">{{__('Package Sign')}}</a>
+                        <a class="J_menuItem" href="{{route("package.warehouseman.index")}}" data-index="0">{{__('Package Sign')}}</a>
                     </li>
                     @endcan
                 </ul>

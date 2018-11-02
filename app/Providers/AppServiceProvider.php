@@ -30,10 +30,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        if ($this->app->environment() !== 'production') {
-            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
-        }
+//        if ($this->app->environment() !== 'production') {
+//            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+//            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+//        }
 
         Reader::listen(BeforeImport::class, function (BeforeImport $event) {
             $concernable = $event->getConcernable();

@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', __('Packages'))
+@section('title', '包裹签收')
 @section('content')
     <div class="wrapper wrapper-content">
         <div class="row">
             <div class="col-sm-12">
                 <div class="ibox">
                     <div class="ibox-title">
-                        <h5>{{__('Packages')}}</h5>
+                        <h5>包裹签收</h5>
                     </div>
                     <div class="ibox-content">
                         <form class="form-horizontal table-search-form" data-ajax="{{route('package.merchandiser.list')}}">
@@ -141,7 +141,16 @@
             type:{'normal':'info','urgent':'success','immediately':'danger'},
             status:{'new':'info','finish':'success'},
             extend: {
-                buttons: []
+                buttons: [
+                    {
+                        name: '签收',
+                        icon: 'fa fa-edit',
+                        title: '签收',
+                        text: '签收',
+                        class_name: 'btn btn-xs btn-primary btn-edit-one  btn-check',
+                        url:'{{route('package.merchandiser.edit')}}'
+                    }
+                ]
             }
         };
         $(function () {

@@ -29,34 +29,36 @@ Route::middleware(['setLocale'])->group(function () {
         Route::post('user/password/reset', 'UserController@resetPassword')->name('_users.password.update');
 
 
-        //
-        Route::get('packages/logistics/{package?}', 'PackageController@logistics')->name('package.logistics');
-        Route::post('packages/download', 'PackageController@download')->name('package.download');
-        //包裹的增改
-        Route::middleware(['permission:package_info_input'])->group(function () {
-
-            Route::get('packages/merchandiser', 'PackageController@merchandiserIndex')->name('package.merchandiser.index');
-            Route::post('packages/merchandiser/list', 'PackageController@merchandiserList')->name('package.merchandiser.list');
-            Route::get('packages/merchandiser/create', 'PackageController@merchandiserCreate')->name('package.merchandiser.create');
-            Route::post('packages/merchandiser/store', 'PackageController@merchandiserStore')->name('package.merchandiser.store');
+        Route::middleware(['permission:package_info_input|package_receive|report'])->group(function () {
+            Route::get('packages/logistics/{package?}', 'PackageController@logistics')->name('package.logistics');
+            Route::post('packages/download', 'PackageController@download')->name('package.download');
             Route::get('packages/merchandiser/{package?}', 'PackageController@merchandiserEdit')->name('package.merchandiser.edit');
             Route::post('packages/merchandiser/{package}', 'PackageController@merchandiserUpdate')->name('package.merchandiser.update');
+        });
+
+
+        //包裹的增改
+        Route::middleware(['permission:package_info_input'])->group(function () {
+            Route::get('packages/merchandiser_index', 'PackageController@merchandiserIndex')->name('package.merchandiser.index');
+            Route::post('packages/merchandiser_list', 'PackageController@merchandiserList')->name('package.merchandiser.list');
+            Route::get('packages/merchandiser_create', 'PackageController@merchandiserCreate')->name('package.merchandiser.create');
+            Route::post('packages/merchandiser_store', 'PackageController@merchandiserStore')->name('package.merchandiser.store');
             Route::get('packages/merchandiser_import', 'PackageController@merchandiserImport')->name('package.merchandiser.import');
             Route::post('packages/merchandiser_import_save', 'PackageController@merchandiserImportSave')->name('package.merchandiser.import.save');
-
         });
 
         //签收
         Route::middleware(['permission:package_receive'])->group(function () {
-            Route::get('packages/warehouseman', 'PackageController@warehousemanIndex')->name('package.warehouseman.index');
-            Route::post('packages/warehouseman/list', 'PackageController@warehousemanList')->name('package.warehouseman.list');
-            Route::post('packages/warehouseman/import', 'PackageController@warehousemanImport')->name('package.warehouseman.import');
-            Route::get('packages/warehouseman/{package}/receive', 'PackageController@warehousemanImport')->name('package.warehouseman.import');
-            Route::get('packages/warehouseman/{package}/receive', 'PackageController@warehousemanImport')->name('package.warehouseman.import');
+            Route::get('packages/warehouseman_index', 'PackageController@warehousemanIndex')->name('package.warehouseman.index');
+            Route::post('packages/warehouseman_list', 'PackageController@warehousemanList')->name('package.warehouseman.list');
+            Route::get('packages/warehouseman_import', 'PackageController@warehousemanImport')->name('package.warehouseman.import');
+            Route::post('packages/warehouseman_import_save', 'PackageController@warehousemanImport')->name('package.warehouseman.import.save');
+            Route::get('packages/warehouseman/{package}/receive', 'PackageController@warehousemanReceive')->name('package.warehouseman.receive');
+            Route::post('packages/warehouseman/{package}/receive_save', 'PackageController@warehousemanReceiveSave')->name('package.warehouseman.receive.save');
         });
 
         //确认
-        Route::middleware(['permission:package_receive'])->group(function () {
+        Route::middleware(['permission:report'])->group(function () {
             Route::get('packages/report', 'PackageController@reportIndex')->name('package.report.index');
             Route::post('packages/report/list', 'PackageController@reportList')->name('package.report.list');
         });
