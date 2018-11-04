@@ -16,7 +16,6 @@ class Package extends Model
     const TYPE_IMMEDIATELY='immediately';
 
 
-
     public static $statusMap = [
         self::STATUS_NEW => '未完成',
         self::STATUS_FINISH => '已完成',
@@ -26,6 +25,17 @@ class Package extends Model
         self::TYPE_URGENT => '紧急件',
         self::TYPE_IMMEDIATELY => '立刻处理件',
     ];
+
+    const MARK_SURE_NEW = 'new';
+    const MARK_SURE_CORRECT = 'correct';
+    const MARK_SURE_ERROR = 'error';
+
+    public static $markSureMap = [
+        self::MARK_SURE_NEW => '未确认',
+        self::MARK_SURE_CORRECT => '正确',
+        self::MARK_SURE_ERROR => '错误',
+    ];
+
 
     protected $fillable = [
         'logistics_tracking_number',

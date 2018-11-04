@@ -57,13 +57,19 @@ Route::middleware(['setLocale'])->group(function () {
             Route::post('packages/warehouseman_receive_save/{package}/', 'PackageController@warehousemanReceiveSave')->name('package.warehouseman.receive.save');
         });
 
-        //确认
+        //报表
         Route::middleware(['permission:report'])->group(function () {
             Route::get('packages/report', 'PackageController@reportIndex')->name('package.report.index');
             Route::post('packages/report_list', 'PackageController@reportList')->name('package.report.list');
         });
 
-
+        //财务
+        Route::middleware(['permission:finance'])->group(function () {
+            Route::get('packages/finance', 'PackageController@financeIndex')->name('package.finance.index');
+            Route::post('packages/finance_list', 'PackageController@financeList')->name('package.finance.list');
+            Route::get('packages/finance_make_sure/{package?}', 'PackageController@financeMakeSure')->name('package.finance.make_sure');
+            Route::get('packages/finance_un_make_sure/{package?}', 'PackageController@financeUnMakeSure')->name('package.finance.un_make_sure');
+        });
 
 
 

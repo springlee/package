@@ -208,6 +208,7 @@ function operateFormatter(value, row, index) {
                 title: j.title,
                 class_name: j.class_name,
                 url: j.url + '/' + row.id,
+                msg:j.msg,
                 text: j.text
             })
         })
@@ -277,14 +278,15 @@ function activeFormatter(value, row, index) {
 
 function button_html(buttons) {
     var html = [];
-    var url, class_name, icon, text, title;
+    var url, class_name, icon, text, title,msg;
     $.each(buttons, function (i, j) {
         class_name = j.class_name ? j.class_name : 'btn-primary btn-' + name + 'one';
         url = j.url ? j.url : '';
         icon = j.icon ? j.icon : '';
         text = j.text ? j.text : '';
+        msg = j.msg ? j.msg : '';
         title = j.title ? j.title : text;
-        html.push('<a href="' + url + '" class="' + class_name + '" title="' + title + '"><i class="' + icon + '"></i>' + (text ? ' ' + text : '') + '</a>');
+        html.push('<a href="' + url + '" class="' + class_name + '" title="' + title + '" data-msg="'+msg+'"><i class="' + icon + '"></i>' + (text ? ' ' + text : '') + '</a>');
     })
     return html.join(' ')
 }
@@ -410,7 +412,19 @@ $(document).ready(function () {
         });
         return false;
     });
+    $(document).on('click', '.btn-operate-one', function () {
+        var url = $(this).attr('href');
+        var msg = $(this).data('msg');
+        layer.confirm(msg, {
+            btn: [language.submit, language.cancel],
+        }, function (index) {
+            $.get(url, {}, AjaxRequest, 'json');
+            layer.close(index);
+        }, function () {
 
+        });
+        return false;
+    });
     $('.collapse-link').on('click', function () {
         var ibox = $(this).closest('div.ibox');
         var button = $(this).find('i');

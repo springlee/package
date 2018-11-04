@@ -45,6 +45,7 @@ class PackageController extends Controller
         $package->fill($request->all());
         $package->enterprise_company_id = \Auth::user()->enterprise_company_id;
         $package->status = Package::STATUS_NEW;
+        $package->make_sure = Package::MAKE_SURE_NEW;
         $package->create_user_id = \Auth::user()->id;
         $package->save();
         return response()->json(['success' => true, 'message' => '新增成功']);
@@ -215,6 +216,34 @@ class PackageController extends Controller
     {
         return response()->json($packageService->list($request->all()));
     }
+
+
+    public function financeIndex ()
+    {
+        $types = Package::$typeMap;
+        $statuses = Package::$statusMap;
+        $logisticsCompanies = \Auth::user()->enterpriseCompany->logisticsCompanies;
+        return view('package.finance_index', compact('types', 'statuses', 'logisticsCompanies'));
+    }
+
+
+    public function financeList(Request $request, PackageService $packageService)
+    {
+        return response()->json($packageService->list($request->all()));
+    }
+
+    public function financeMakeSure(Package $package){
+
+        $package->mark_sure = Package::MARK_SURE_CORRECT;
+        $package->save();
+        return response()->json(['success' => true, 'message' => '处理成功']);
+    }
+    public function financeUnMakeSure(Package $package){
+        $package->mark_sure = Package::MARK_SURE_ERROR;
+        $package->save();
+        return response()->json(['success' => true, 'message' => '处理成功']);
+    }
+
 
 }
 

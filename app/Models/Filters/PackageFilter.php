@@ -25,4 +25,10 @@ class PackageFilter extends ModelFilter
         return $this->where('status',$value);
     }
 
+    public function receiveUserName($value){
+        return $this->whereHas('receiveUser',function ($query)use($value){
+            $query->where('name','like','%'.$value.'%');
+        });
+    }
+
 }

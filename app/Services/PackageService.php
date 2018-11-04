@@ -20,6 +20,7 @@ class PackageService
                 $item->type_name = Package::$typeMap[$item->type];
                 $item->status_name = Package::$statusMap[$item->status];
                 $item->receive_user_name = $item->receiveUser->name??'';
+                $item->mark_sure_name = Package::$markSureMap[$item->mark_sure];
         });
         return [
             'rows' => $package->toArray(),
