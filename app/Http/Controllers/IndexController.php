@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 
 
+use App\Models\Package;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -22,6 +24,9 @@ class IndexController extends Controller
 
     public function main()
     {
+
+        //$userCount = User::query()->where('','')->count();
+
 
         return view('index.main');
     }

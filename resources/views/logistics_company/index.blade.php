@@ -45,7 +45,6 @@
                                 </a>
                             </div>
                             <table id="table"
-                                   data-toggle="table"
                                    data-id-field="id"
                                    data-select-item-name="id[]"
                                    data-toolbar="#toolbar"

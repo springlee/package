@@ -14,4 +14,9 @@ class EnterpriseCompany extends Model
     public function logisticsCompanies(){
         return $this->hasMany(LogisticsCompany::class);
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

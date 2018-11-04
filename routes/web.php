@@ -52,15 +52,15 @@ Route::middleware(['setLocale'])->group(function () {
             Route::get('packages/warehouseman_index', 'PackageController@warehousemanIndex')->name('package.warehouseman.index');
             Route::post('packages/warehouseman_list', 'PackageController@warehousemanList')->name('package.warehouseman.list');
             Route::get('packages/warehouseman_import', 'PackageController@warehousemanImport')->name('package.warehouseman.import');
-            Route::post('packages/warehouseman_import_save', 'PackageController@warehousemanImport')->name('package.warehouseman.import.save');
-            Route::get('packages/warehouseman/{package}/receive', 'PackageController@warehousemanReceive')->name('package.warehouseman.receive');
-            Route::post('packages/warehouseman/{package}/receive_save', 'PackageController@warehousemanReceiveSave')->name('package.warehouseman.receive.save');
+            Route::post('packages/warehouseman_import_save', 'PackageController@warehousemanImportSave')->name('package.warehouseman.import.save');
+            Route::get('packages/warehouseman_receive/{package?}', 'PackageController@warehousemanReceive')->name('package.warehouseman.receive');
+            Route::post('packages/warehouseman_receive_save/{package}/', 'PackageController@warehousemanReceiveSave')->name('package.warehouseman.receive.save');
         });
 
         //确认
         Route::middleware(['permission:report'])->group(function () {
             Route::get('packages/report', 'PackageController@reportIndex')->name('package.report.index');
-            Route::post('packages/report/list', 'PackageController@reportList')->name('package.report.list');
+            Route::post('packages/report_list', 'PackageController@reportList')->name('package.report.list');
         });
 
 

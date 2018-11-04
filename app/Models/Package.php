@@ -32,6 +32,7 @@ class Package extends Model
         'logistics_company_id',
         'enterprise_company_id',
         'package_quantity',
+        'receive_quantity',
         'type',
         'status',
         'create_user_id',

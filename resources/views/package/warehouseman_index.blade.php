@@ -9,7 +9,7 @@
                         <h5>包裹签收</h5>
                     </div>
                     <div class="ibox-content">
-                        <form class="form-horizontal table-search-form" data-ajax="{{route('package.merchandiser.list')}}">
+                        <form class="form-horizontal table-search-form" data-ajax="{{route('package.warehouseman.list')}}">
                             <fieldset>
                                 <div class="row">
                                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
@@ -21,7 +21,7 @@
                                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                         <label class="control-label col-xs-4 ">物流公司</label>
                                         <div class="col-xs-8">
-                                            <select class="form-control" name="logistics_company_id">
+                                            <select class="form-control select2" name="logistics_company_id">
                                                 <option value="">全部</option>
                                                 @if($logisticsCompanies)
                                                     @foreach($logisticsCompanies as $key=> $logisticsCompany)
@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                                        <div class="col-sm-8 col-xs-offset-4">
+                                        <div class="col-xs-12 col-xs-offset-4">
                                             <button class="btn btn-sm btn-info table-search-btn"><i
                                                         class="fa fa-search"></i>{{__('Search')}}
                                             </button>
@@ -85,10 +85,9 @@
                                    title="{{__('Create')}}">
                                     <i class="fa fa-plus"></i>{{__('Create')}}
                                 </a>
-                                <a href="{{route('package.merchandiser.import')}}"  class="btn btn-sm btn-primary btn-edit-one" title="包裹新建导入" data-width="300px" data-height="200px">导入</a>
+                                <a href="{{route('package.warehouseman.import')}}"  class="btn btn-sm btn-primary btn-edit-one" title="包裹签收导入" data-width="400px" data-height="300px"> <i class="fa fa-file-excel-o"></i>导入</a>
                             </div>
                             <table id="table"
-                                   data-toggle="table"
                                    data-id-field="id"
                                    data-select-item-name="id[]"
                                    data-toolbar="#toolbar"
@@ -111,10 +110,13 @@
                                     <th data-align="center" data-field="logistics_tracking_number">物流单号</th>
                                     <th data-align="center" data-field="logistics_company_name">物流公司</th>
                                     <th data-align="center" data-field="package_quantity">包裹数量</th>
+                                    <th data-align="center" data-field="receive_quantity">签收数量</th>
                                     <th data-align="center" data-field="type_name" data-formatter="typeFormatter">包裹类型</th>
                                     <th data-align="center" data-field="status_name" data-formatter="statusFormatter">{{__('Status')}}</th>
                                     <th data-align="center" data-field="created_at">{{__('Created at')}}</th>
-                                    <th data-align="center" data-field="type" data-formatter="logisticsFormatter">物流轨迹</th>
+                                    <th data-align="center" data-field="received_at">签收时间</th>
+                                    <th data-align="center" data-field="receive_user_name">签收人</th>
+                                    <th data-align="center" data-formatter="logisticsFormatter">物流轨迹</th>
                                     <th data-align="center" data-field="operate" data-formatter="operateFormatter">{{__('Operate')}}</th>
                                     <th data-align="center" data-field="remark">备注</th>
                                 </tr>
@@ -148,7 +150,7 @@
                         title: '签收',
                         text: '签收',
                         class_name: 'btn btn-xs btn-primary btn-edit-one  btn-check',
-                        url:'{{route('package.merchandiser.edit')}}'
+                        url:'{{route('package.warehouseman.receive')}}'
                     }
                 ]
             }
@@ -167,6 +169,16 @@
                     });
                 })
             })
+            $('#table').on('load-success.bs.table', function (data) {
+                $('#table tr').each(function (index, value) {
+                    if(index>0){
+                        var status = $(value).find('span.status').data('status');
+                        if(status==='finish'){
+                            $(value).find('a.btn-edit-one').hide();
+                        }
+                    }
+                })
+            });
         })
     </script>
 @endsection

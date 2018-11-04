@@ -19,6 +19,7 @@ class PackageService
                 $item->logistics_company_name = $item->logisticsCompany->logistics_company_name;
                 $item->type_name = Package::$typeMap[$item->type];
                 $item->status_name = Package::$statusMap[$item->status];
+                $item->receive_user_name = $item->receiveUser->name??'';
         });
         return [
             'rows' => $package->toArray(),

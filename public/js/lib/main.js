@@ -256,7 +256,7 @@ function typeFormatter(value, row, index) {
         return '';
     } else {
         var color = typeof tableOperate.type[row.type] !== 'undefined' ? tableOperate.type[row.type] : 'primary';
-        return '<span id="type-' + row.id + '"  data-type="' + row.type + '" class="status text-' + color + '"><i class="fa fa-circle"></i>' + value + '</span>';
+        return '<span id="type-' + row.id + '"  data-type="' + row.type + '" class="type text-' + color + '"><i class="fa fa-circle"></i>' + value + '</span>';
     }
 
 }

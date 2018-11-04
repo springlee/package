@@ -175,5 +175,6 @@ return [
         'logistics_company_name' => '物流公司',
         'package_type' => '包裹类型',
         'package_quantity' => '包裹数量',
+        'receive_quantity'=>'签收数量'
     ],
 ];

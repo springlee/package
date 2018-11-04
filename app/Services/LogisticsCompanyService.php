@@ -11,6 +11,7 @@ class LogisticsCompanyService
 
     public function list($where)
     {
+        $where['enterprise_company_id'] = \Auth::user()->enterprise_company_id;
         $logisticsCompany = LogisticsCompany::query()->filter($where)->offset($where['offset'])->limit($where['limit'])->get();
         return [
             'rows' => $logisticsCompany->toArray(),

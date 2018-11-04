@@ -13,7 +13,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 
-class PackageImport implements ToCollection, WithBatchInserts, WithHeadingRow
+class PackageReceiveImport implements ToCollection, WithBatchInserts, WithHeadingRow
 {
 
     use Importable;
@@ -36,10 +36,7 @@ class PackageImport implements ToCollection, WithBatchInserts, WithHeadingRow
             $data['remark'] = array_get($row, '备注');
             $validator = \Validator::make($data, [
                 'logistics_tracking_number' => [
-                    'required',
-                    Rule::unique('packages')->where(function ($query) {
-                        return $query->where('enterprise_company_id', \Auth::user()->enterprise_company_id);
-                    })
+                    'required'
                 ],
                 'logistics_company_name' => [
                     'required',
@@ -58,6 +55,7 @@ class PackageImport implements ToCollection, WithBatchInserts, WithHeadingRow
                 }
                 throw new InvalidRequestException($error_msg);
             }
+
             $logisticsCompany = LogisticsCompany::query()
                 ->where('logistics_company_name','=',$data['logistics_company_name'])
                 ->where('enterprise_company_id','=', \Auth::user()->enterprise_company_id)
@@ -65,18 +63,45 @@ class PackageImport implements ToCollection, WithBatchInserts, WithHeadingRow
             if($logisticsCompany->status===LogisticsCompany::STATUS_DISABLE){
                 throw new InvalidRequestException($data['logistics_company_name'].'物流公司被禁用');
             }
-            $insert[] = [
-                'logistics_tracking_number' => $data['logistics_tracking_number'],
-                'package_quantity' => $data['package_quantity'],
-                'type' => array_search($data['package_type'],Package::$typeMap),
-                'logistics_company_id'=>$logisticsCompany->id,
-                'enterprise_company_id'=> \Auth::user()->enterprise_company_id,
-                'create_user_id'=>\Auth::user()->id,
-                'status'=>Package::STATUS_NEW,
-                'remark'=>$data['remark'],
-                'created_at'=>Carbon::now(),
-                'updated_at'=>Carbon::now(),
-            ];
+
+            //判断是否已签收
+            $package = Package::query()->where('logistics_tracking_number',$data['logistics_tracking_number'])->first();
+            if($package){
+                if($package->status == Package::STATUS_FINISH) {
+                    throw new InvalidRequestException($data['logistics_tracking_number'].'已签收');
+                }
+                $package->fill([
+                    'logistics_tracking_number' => $data['logistics_tracking_number'],
+                    'package_quantity' => $data['package_quantity'],
+                    'receive_quantity' => $data['package_quantity'],
+                    'type' => array_search($data['package_type'],Package::$typeMap),
+                    'logistics_company_id'=>$logisticsCompany->id,
+                    'enterprise_company_id'=> \Auth::user()->enterprise_company_id,
+                    'status'=>Package::STATUS_FINISH,
+                    'receive_user_id'=>\Auth::user()->id,
+                    'remark'=>$data['remark'],
+                    'received_at'=>Carbon::now(),
+                    'updated_at'=>Carbon::now(),
+                ]);
+                $package->save();
+
+            }else{
+                $insert[] = [
+                    'logistics_tracking_number' => $data['logistics_tracking_number'],
+                    'package_quantity' => $data['package_quantity'],
+                    'receive_quantity' => $data['package_quantity'],
+                    'type' => array_search($data['package_type'],Package::$typeMap),
+                    'logistics_company_id'=>$logisticsCompany->id,
+                    'enterprise_company_id'=> \Auth::user()->enterprise_company_id,
+                    'create_user_id'=>\Auth::user()->id,
+                    'status'=>Package::STATUS_FINISH,
+                    'receive_user_id'=>\Auth::user()->id,
+                    'remark'=>$data['remark'],
+                    'created_at'=>Carbon::now(),
+                    'received_at'=>Carbon::now(),
+                    'updated_at'=>Carbon::now(),
+                ];
+            }
         }
         \DB::table('packages')->insert($insert);
     }

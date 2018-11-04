@@ -12,4 +12,7 @@ class LogisticsCompanyFilter extends ModelFilter
     public function logisticsCompanyName($value){
         return $this->whereLike('logistics_company_name',$value);
     }
+    public function enterpriseCompany($value){
+        return $this->where('enterprise_company_id',$value);
+    }
 }

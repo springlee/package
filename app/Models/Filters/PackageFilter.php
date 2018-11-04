@@ -15,6 +15,9 @@ class PackageFilter extends ModelFilter
     public function logisticsCompany($value){
         return $this->where('logistics_company_id',$value);
     }
+    public function enterpriseCompany($value){
+        return $this->where('enterprise_company_id',$value);
+    }
     public function type($value){
         return $this->where('type',$value);
     }

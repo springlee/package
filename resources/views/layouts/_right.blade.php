@@ -65,7 +65,6 @@
         </nav>
     </div>
     <div class="row content-tabs">
-        <button class="navbar-minimalize roll-nav toggle" href="#"><i class="fa fa-bars"></i></button>
         <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i></button>
         <nav class="page-tabs J_menuTabs">
             <div class="page-tabs-content">

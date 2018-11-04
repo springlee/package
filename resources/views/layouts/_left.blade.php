@@ -61,7 +61,7 @@
                 </a>
                 <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="" data-index="0">{{__('Package Report')}}</a>
+                            <a class="J_menuItem" href="{{route('package.report.index')}}" data-index="0">{{__('Package Report')}}</a>
                         </li>
                 </ul>
             </li>

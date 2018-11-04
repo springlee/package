@@ -19,7 +19,7 @@
                                         <div class="form-group">
                                             <label  class="control-label col-xs-12 col-sm-2">物流公司:</label>
                                             <div class="col-xs-8">
-                                                <select class="form-control" name="logistics_company_id" required>
+                                                <select class="form-control select2" name="logistics_company_id" required>
                                                     <option value="">请选择</option>
                                                     @if($logisticsCompanies)
                                                         @foreach($logisticsCompanies as $key=> $logisticsCompany)
