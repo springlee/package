@@ -92,6 +92,12 @@ class ProductController extends Controller
         return $grid;
     }
 
+    public function edit($id, Content $content)
+    {
+        return $content
+            ->header('编辑')
+            ->body($this->form()->edit($id));
+    }
 
     /**
      * Make a form builder.

@@ -75,13 +75,13 @@
                 </a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">{{__('My Product')}}</a>
+                        <a class="J_menuItem" href="{{route('products.index')}}" data-index="0">{{__('My Product')}}</a>
                     </li>
                     <li>
                         <a class="J_menuItem" href="{{route('package.finance.index')}}" data-index="0">{{__('Package Confirm')}}</a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">{{__('Product Service')}}</a>
+                        <a class="J_menuItem" href="" data-index="0">服务费用对账</a>
                     </li>
                 </ul>
             </li>

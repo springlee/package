@@ -69,6 +69,9 @@ Route::middleware(['setLocale'])->group(function () {
             Route::post('packages/finance_list', 'PackageController@financeList')->name('package.finance.list');
             Route::get('packages/finance_make_sure/{package?}', 'PackageController@financeMakeSure')->name('package.finance.make_sure');
             Route::get('packages/finance_un_make_sure/{package?}', 'PackageController@financeUnMakeSure')->name('package.finance.un_make_sure');
+            Route::get('products', 'ProductController@index')->name('products.index');
+            Route::get('products/{product}/rules', 'ProductController@rules')->name('products.rules');
+            Route::post('products/{product}/pay', 'ProductController@pay')->name('products.pay');
         });
 
 

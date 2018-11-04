@@ -18,8 +18,8 @@ class Product extends Model
     ];
 
     public static $unitMap =[
-        self::UNIT_MONTH=>'月',
-        self::UNIT_QUARTER=>'季度'
+        self::UNIT_MONTH=>'个月',
+        self::UNIT_QUARTER=>'个季度'
     ];
 
     public  function rules(){
