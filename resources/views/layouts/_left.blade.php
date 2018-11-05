@@ -8,7 +8,7 @@
                     <span><img alt="image" class="img-circle" src="images/user.png" width="70" height="70"/></span>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
-                            <span class="block m-t-xs"><strong class="font-bold">{{ Auth::user()->name }}</strong>({{ Auth::user()->enterpriseCompany->enterprise_company_name}})</span>
+                            <span class="block m-t-xs"><strong class="font-bold">{{ Auth::user()->name }}</strong></span>
                             <span class="text-muted text-xs block">{{$role_info}}<b class="caret"></b></span>
                         </span>
                     </a>
@@ -81,7 +81,7 @@
                         <a class="J_menuItem" href="{{route('package.finance.index')}}" data-index="0">{{__('Package Confirm')}}</a>
                     </li>
                     <li>
-                        <a class="J_menuItem" href="" data-index="0">服务费用对账</a>
+                        <a class="J_menuItem" href="{{route('orders.index')}}" data-index="0">服务费用对账</a>
                     </li>
                 </ul>
             </li>

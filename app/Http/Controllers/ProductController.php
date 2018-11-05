@@ -38,7 +38,7 @@ class ProductController extends Controller
         $order = $order->fill([
             'enterprise_company_id' => \Auth::user()->enterprise_company_id,
             'product_id' => $product->id,
-            'product_rule_id' => $rule->id,
+            'num' => $rule->num,
             'money' => $rule->price,
             'status' => Order::STATUS_NEW,
         ]);
@@ -77,13 +77,13 @@ class ProductController extends Controller
                 ->first();
             switch ($order->product->unit) {
                 case 'month':
-                    $delay = 1 * $order->rule->num;
+                    $delay = 1 * $order->num;
                     break;
                 case 'quarter':
-                    $delay = 3 * $order->rule->num;
+                    $delay = 3 * $order->num;
                     break;
                 default:
-                    $delay = 1 * $order->rule->num;
+                    $delay = 1 * $order->num;
                     break;
             }
             if ($enterProduct) {

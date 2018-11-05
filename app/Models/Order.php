@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use EloquentFilter\Filterable;
 class Order extends Model
 {
-    //
+    use Filterable;
     const STATUS_NEW = 'new';
     const STATUS_FINISH = 'finish';
 
@@ -62,11 +62,11 @@ class Order extends Model
         });
     }
 
-    public function rule(){
-        return $this->belongsTo(ProductRule::class,'product_rule_id','id');
-    }
-
     public function product(){
         return $this->belongsTo(Product::class);
+    }
+
+    public function enterpriseCompany(){
+        return $this->belongsTo(EnterpriseCompany::class);
     }
 }

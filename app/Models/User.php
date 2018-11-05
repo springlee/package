@@ -50,9 +50,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-    protected $casts = [
-        'expiry_date'=>'date'
-    ];
     public function enterpriseCompany(){
         return $this->belongsTo(EnterpriseCompany::class);
     }

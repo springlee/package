@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b647307fc61813430e5330b657d5348",
+    "content-hash": "648dc2f81795b0d06c3692f8aeb827a0",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1060,16 +1060,16 @@
         },
         {
             "name": "encore/laravel-admin",
-            "version": "v1.6.3",
+            "version": "v1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z-song/laravel-admin.git",
-                "reference": "5d6aa672f918df80d012fd8fafb5dd7b191146d4"
+                "reference": "2c7de6c1d8e3aad3c300a1ba3e8fa0f82403845d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z-song/laravel-admin/zipball/5d6aa672f918df80d012fd8fafb5dd7b191146d4",
-                "reference": "5d6aa672f918df80d012fd8fafb5dd7b191146d4",
+                "url": "https://api.github.com/repos/z-song/laravel-admin/zipball/2c7de6c1d8e3aad3c300a1ba3e8fa0f82403845d",
+                "reference": "2c7de6c1d8e3aad3c300a1ba3e8fa0f82403845d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1133,7 +1133,7 @@
                 "grid",
                 "laravel"
             ],
-            "time": "2018-09-20T05:21:42+00:00"
+            "time": "2018-11-01T02:13:08+00:00"
         },
         {
             "name": "erusev/parsedown",

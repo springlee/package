@@ -129,9 +129,9 @@
         <div class="row">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><i class="fa fa-dashboard"></i> {{__('Dashboard')}} </h5>
+                    <h5>{{ Auth::user()->enterpriseCompany->enterprise_company_name}}</h5>
                     <div class="ibox-tools">
-                        <div>系统服务到期时间:<span class="text-danger"> {{Auth::user()->expiry_date->format('Y-m-d')}}</span></div>
+                        <div>系统服务到期时间:<span class="text-danger"> {{Auth::user()->expiry_date}}</span></div>
                     </div>
                 </div>
                 <div class="ibox-content">

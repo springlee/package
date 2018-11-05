@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_sn');
             $table->unsignedInteger('enterprise_company_id');
             $table->unsignedInteger('product_id');
-            $table->unsignedInteger('product_rule_id');
+            $table->unsignedInteger('num');
             $table->decimal('money',10,2);
             $table->string('status');
             $table->date('paid_at');

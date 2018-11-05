@@ -19,7 +19,7 @@ class UserService
             ->filter($where)
             ->where('enterprise_company_id','=',\Auth::user()->enterprise_company_id)
             ->where('user_type','=',User::TYPE_NORMAL)
-            ->offset($where['offset'])->limit($where['limit'])->get()->each(function ($item, $key) {
+            ->offset($where['offset'])->limit($where['limit'])->latest()->get()->each(function ($item, $key) {
                 foreach ($item->getRoleNames() as $roleName){
                     $item->role_info .=  __($roleName).',';
                 }
@@ -33,7 +33,9 @@ class UserService
         });
         return [
             'rows' => $user->toArray(),
-            'total' => User::query()->filter($where)->count()
+            'total' => User::query()->filter($where)
+                ->where('enterprise_company_id','=',\Auth::user()->enterprise_company_id)
+                ->where('user_type','=',User::TYPE_NORMAL)->count()
         ];
     }
 
@@ -56,10 +58,10 @@ class UserService
         $order = $order->fill([
             'enterprise_company_id' => $user->enterprise_company_id,
             'product_id' => $product->id,
-            'product_rule_id' =>0,
+            'num' =>$delay,
             'money' => 0,
             'status' => Order::STATUS_FINISH,
-            'remark'=>'系统服务赠送6个月 到期日:'.$expiry_date,
+            'remark'=>'系统服务赠送'.$delay.Product::$unitMap[$product->unit].' 到期日:'.$expiry_date->format('Y-m-d'),
         ]);
         $order->save();
     }

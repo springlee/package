@@ -66,7 +66,6 @@ class EnterpriseCompanyController extends Controller
         });
         $grid->actions(function ($actions) {
             $actions->disableDelete();
-            $actions->disableView();
         });
 
         $grid->filter(function ($filter) {
@@ -119,6 +118,54 @@ class EnterpriseCompanyController extends Controller
         return $content
             ->header('编辑')
             ->body($this->form()->edit($id));
+    }
+
+    public function show($id, Content $content)
+    {
+        return $content
+            ->header('详情')
+            ->body($this->detail($id));
+    }
+
+    /**
+     * Make a show builder.
+     *
+     * @param mixed $id
+     * @return Show
+     */
+    protected function detail($id)
+    {
+        $show = new Show(EnterpriseCompany::findOrFail($id));
+
+        $show->enterprise_company_name('公司企业名称');
+        $show->products('他的产品服务',function ($product) {
+            $product->product_name('产品服务名称');
+            $product->expiry_date('到期时间');
+            $product->actions(function ($actions) {
+                $actions->disableDelete();
+                $actions->disableView();
+                $actions->disableEdit();
+            });
+            $product->tools(function ($tools) {
+                // 禁用批量删除按钮
+                $tools->batch(function ($batch) {
+                    $batch->disableDelete();
+                });
+            });
+            $product->disableFilter();
+            $product->disableExport();
+            $product->disableRowSelector();
+            $product->disableCreateButton();
+            $product->disableRowSelector();
+
+        });
+        $show->panel()
+            ->tools(function ($tools) {
+                $tools->disableEdit();
+                $tools->disableDelete();
+            });
+
+        return $show;
     }
 
 }

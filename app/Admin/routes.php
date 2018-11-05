@@ -20,5 +20,6 @@ Route::group([
 
     $router->resource('front_users', 'FrontUserController');
     $router->resource('enterprise_companies', 'EnterpriseCompanyController');
+    $router->resource('orders', 'OrderController');
 
 });

@@ -74,9 +74,7 @@ class FrontUserController extends Controller
         $grid->email('邮箱');
         $grid->email_verified_at('邮箱验证时间');
         $grid->column('enterpriseCompany.enterprise_company_name','企业公司名称');
-        $grid->expiry_date('系统到期日')->display(function ($expiry_date) {
-            return date('Y-m-d',strtotime($expiry_date));
-        });
+        $grid->expiry_date('系统到期日');
         $states = [
             'on'  => ['value' => 'enable', 'text' => '启用', 'color' => 'primary'],
             'off' => ['value' => 'disable', 'text' => '禁用', 'color' => 'default'],
@@ -136,7 +134,6 @@ class FrontUserController extends Controller
             return EnterpriseCompany::find($enterprise_company_id)->enterprise_company_name;
         });
         $show->expiry_date('服务到期日期');
-        $show->status('状态');
         $show->created_at('创建时间');
 
         $show->panel()
@@ -214,7 +211,7 @@ class FrontUserController extends Controller
                 }
                 $user = User::find($form->model()->id);
                 $user->assignRole('Admin');
-                if($user->expiry_date==='0000-00-00'){
+                if(!$user->expiry_date){
                     $userService = new UserService();
                     $userService->enterpriseCompanyServiceByRegisterOrAdd($user);
                 }

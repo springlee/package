@@ -103,6 +103,8 @@ Route::middleware(['setLocale'])->group(function () {
             Route::get('products', 'ProductController@index')->name('products.index');
             Route::get('products/{product}/rules', 'ProductController@rules')->name('products.rules');
             Route::post('products/{product}/pay', 'ProductController@pay')->name('products.pay');
+            Route::get('orders', 'OrderController@index')->name('orders.index');
+            Route::post('orders/list', 'OrderController@list')->name('orders.list');
         });
     });
 

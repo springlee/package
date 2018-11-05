@@ -25,7 +25,6 @@ class IndexController extends Controller
 
     public function main()
     {
-
         $enterprise_company_id= \Auth::user()->enterprise_company_id;
         $data['user_count'] = User::query()
             ->where('enterprise_company_id',$enterprise_company_id)->count();
