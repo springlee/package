@@ -78,7 +78,7 @@ class PackageReceiveImport implements ToCollection, WithBatchInserts, WithHeadin
                     'logistics_company_id'=>$logisticsCompany->id,
                     'enterprise_company_id'=> \Auth::user()->enterprise_company_id,
                     'status'=>Package::STATUS_FINISH,
-                    'make_sure' => Package::MARK_SURE_NEW,
+                    'mark_sure' => Package::MARK_SURE_NEW,
                     'receive_user_id'=>\Auth::user()->id,
                     'remark'=>$data['remark'],
                     'received_at'=>Carbon::now(),

@@ -32,10 +32,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-//        if ($this->app->environment() !== 'production') {
-//            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
-//            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
-//        }
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        }
 
         Reader::listen(BeforeImport::class, function (BeforeImport $event) {
             $concernable = $event->getConcernable();
@@ -54,7 +54,7 @@ class AppServiceProvider extends ServiceProvider
                 $config['mode']         = 'dev';
                 $config['log']['level'] = Logger::DEBUG;
                 $config['notify_url'] = route('products.pay.notify');
-                $config['return_url'] = url('/');
+                $config['return_url'] = route('products.pay.return');
             } else {
                 $config['log']['level'] = Logger::WARNING;
             }

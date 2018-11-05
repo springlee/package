@@ -74,7 +74,9 @@ class FrontUserController extends Controller
         $grid->email('邮箱');
         $grid->email_verified_at('邮箱验证时间');
         $grid->column('enterpriseCompany.enterprise_company_name','企业公司名称');
-        $grid->expiry_date('系统到期日');
+        $grid->expiry_date('系统到期日')->display(function ($expiry_date) {
+            return date('Y-m-d',strtotime($expiry_date));
+        });
         $states = [
             'on'  => ['value' => 'enable', 'text' => '启用', 'color' => 'primary'],
             'off' => ['value' => 'disable', 'text' => '禁用', 'color' => 'default'],

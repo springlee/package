@@ -93,4 +93,10 @@ class UserController extends Controller
         return view('user.disable');
     }
 
+    public function expiry(Request $request){
+        if(Carbon::now()->diffInDays($request->user()->expiry_date,false)>=0){
+            return redirect('/');
+        }
+        return view('user.expiry');
+    }
 }

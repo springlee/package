@@ -9,7 +9,7 @@
                         <h5>包裹对账</h5>
                     </div>
                     <div class="ibox-content">
-                        <form class="form-horizontal table-search-form" data-ajax="{{route('package.report.list')}}">
+                        <form class="form-horizontal table-search-form" data-ajax="{{route('package.finance.list')}}">
                             <fieldset>
                                 <div class="row">
                                     <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-3">

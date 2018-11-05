@@ -67,7 +67,7 @@ class ProductController extends Controller
         $grid->product_desc('产品描述');
         $grid->unit('单位')->display(function ($unit) {
             return Product::$unitMap[$unit];
-        });;
+        });
         $grid->created_at('创建时间');
         $grid->actions(function ($actions) {
             $actions->disableDelete();

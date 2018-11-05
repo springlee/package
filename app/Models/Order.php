@@ -63,7 +63,7 @@ class Order extends Model
     }
 
     public function rule(){
-        return $this->belongsTo(ProductRule::class);
+        return $this->belongsTo(ProductRule::class,'product_rule_id','id');
     }
 
     public function product(){

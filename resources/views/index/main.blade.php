@@ -129,7 +129,10 @@
         <div class="row">
             <div class="ibox">
                 <div class="ibox-title">
-                    <h5><i class="fa fa-dashboard"></i> {{__('Dashboard')}}</h5>
+                    <h5><i class="fa fa-dashboard"></i> {{__('Dashboard')}} </h5>
+                    <div class="ibox-tools">
+                        <div>系统服务到期时间:<span class="text-danger"> {{Auth::user()->expiry_date->format('Y-m-d')}}</span></div>
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <div id="myTabContent" class="tab-content">
@@ -140,37 +143,34 @@
                                     <div class="sm-st clearfix">
                                         <span class="sm-st-icon st-red"><i class="fa fa-users"></i></span>
                                         <div class="sm-st-info">
-                                            <span>35200</span>
-                                            总会员数                            </div>
+                                            <span>{{$data['user_count']}}</span>企业用户数</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3 col-xs-6">
                                     <div class="sm-st clearfix">
                                         <span class="sm-st-icon st-violet"><i class="fa fa-book"></i></span>
                                         <div class="sm-st-info">
-                                            <span>219390</span>
-                                            总访问数                            </div>
+                                            <span>{{$data['package_total_count']}}</span>总包裹数量</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3 col-xs-6">
                                     <div class="sm-st clearfix">
                                         <span class="sm-st-icon st-blue"><i class="fa fa-shopping-bag"></i></span>
                                         <div class="sm-st-info">
-                                            <span>32143</span>
-                                            总订单数                            </div>
+                                            <span>{{$data['package_total_urgent_count']}}</span>紧急件</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-3 col-xs-6">
                                     <div class="sm-st clearfix">
                                         <span class="sm-st-icon st-green"><i class="fa fa-cny"></i></span>
                                         <div class="sm-st-info">
-                                            <span>174800</span>
-                                            总金额                            </div>
+                                            <span>{{$data['package_total_immediately_count']}}</span>立即处理件</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
+                                <p>今日包裹</p>
                                 <div class="">
                                     <div class="card sameheight-item stats">
                                         <div class="card-block">
@@ -178,84 +178,63 @@
                                                 <div class="col-xs-6 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-rocket"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> 430 </div>
-                                                        <div class="name"> 今日注册 </div>
+                                                        <div class="value">{{$data['package_today_count']}}</div>
+                                                        <div class="name">包裹量</div>
                                                     </div>
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" style="width: 30%"></div>
+                                                        <div class="progress-bar progress-bar-success" style="width: 80%"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-shopping-cart"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> 321 </div>
-                                                        <div class="name"> 今日登录 </div>
+                                                        <div class="value">{{$data['package_today_urgent_count']}}</div>
+                                                        <div class="name">紧急件</div>
                                                     </div>
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                        <div class="progress-bar progress-bar-success" style="width: 80%"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6  stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-line-chart"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> 2324 </div>
-                                                        <div class="name"> 今日订单 </div>
+                                                        <div class="value">{{$data['package_today_immediately_count']}}</div>
+                                                        <div class="name">立即处理件</div>
                                                     </div>
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                        <div class="progress-bar progress-bar-success" style="width: 80%"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6  stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-users"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> 132 </div>
-                                                        <div class="name"> 未处理订单 </div>
+                                                        <div class="value">{{$data['package_today_un_deal_count']}}</div>
+                                                        <div class="name">未签收件</div>
                                                     </div>
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                        <div class="progress-bar progress-bar-success" style="width: 80%"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6  stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-list-alt"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> 80% </div>
-                                                        <div class="name"> 七日新增 </div>
+                                                        <div class="value">{{$data['package_today_un_deal_urgent_count']}}</div>
+                                                        <div class="name">未签收紧急件</div>
                                                     </div>
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                        <div class="progress-bar progress-bar-success" style="width: 80%"></div>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-6 stat-col">
                                                     <div class="stat-icon"> <i class="fa fa-dollar"></i> </div>
                                                     <div class="stat">
-                                                        <div class="value"> 32% </div>
-                                                        <div class="name"> 七日活跃 </div>
+                                                        <div class="value">{{$data['package_today_un_deal_immediately_count']}}</div>
+                                                        <div class="name">未签收立即处理件</div>
                                                     </div>
                                                     <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" style="width: 25%"></div>
+                                                        <div class="progress-bar progress-bar-success" style="width: 80%"></div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row" style="margin-top:15px;">
-
-                                <div class="col-lg-12">
-                                </div>
-                                <div class="col-xs-6 col-md-3">
-                                    <div class="panel bg-blue">
-                                        <div class="panel-body">
-                                            <div class="panel-title">
-                                                <span class="label label-success pull-right">实时</span>
-                                                <h5>分类统计</h5>
-                                            </div>
-                                            <div class="panel-content">
-                                                <h1 class="no-margins">1234</h1>
-                                                <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
-                                                <small>当前分类总记录数</small>
                                             </div>
                                         </div>
                                     </div>

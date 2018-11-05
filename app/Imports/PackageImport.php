@@ -73,7 +73,7 @@ class PackageImport implements ToCollection, WithBatchInserts, WithHeadingRow
                 'enterprise_company_id'=> \Auth::user()->enterprise_company_id,
                 'create_user_id'=>\Auth::user()->id,
                 'status'=>Package::STATUS_NEW,
-                'make_sure' => Package::MARK_SURE_NEW,
+                'mark_sure' => Package::MARK_SURE_NEW,
                 'remark'=>$data['remark'],
                 'created_at'=>Carbon::now(),
                 'updated_at'=>Carbon::now(),
