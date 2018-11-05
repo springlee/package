@@ -63,8 +63,6 @@ class ProductController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Product);
-
-        $grid->id('ID');
         $grid->product_name('产品名称');
         $grid->product_desc('产品描述');
         $grid->unit('单位')->display(function ($unit) {

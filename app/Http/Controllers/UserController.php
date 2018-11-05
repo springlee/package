@@ -54,6 +54,7 @@ class UserController extends Controller
         $user->status= User::STATUS_ENABLE;
         $user->user_type= User::TYPE_NORMAL;
         $user->enterprise_company_id= \Auth::user()->enterprise_company_id;
+        $user->expiry_date = \Auth::user()->expiry_date;
         $user->save();
         $user->assignRole($request->roles);
         return response()->json(['success' => true, 'message' => '新增成功']);

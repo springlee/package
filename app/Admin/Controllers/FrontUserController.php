@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Models\EnterpriseCompany;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Services\UserService;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
@@ -169,7 +170,6 @@ class FrontUserController extends Controller
             $form->select('enterprise_company_id', '企业名称')
                 ->options(EnterpriseCompany::all()->pluck('enterprise_company_name', 'id'))
                 ->rules('required');
-            $form->date('expiry_date', '服务到期日期')->default(date('Y-m-d'))->rules('required|date');
             $form->tools(function (Form\Tools $tools) {
                 $tools->disableDelete();
                 $tools->disableView();
@@ -212,6 +212,10 @@ class FrontUserController extends Controller
                 }
                 $user = User::find($form->model()->id);
                 $user->assignRole('Admin');
+                if($user->expiry_date==='0000-00-00'){
+                    $userService = new UserService();
+                    $userService->enterpriseCompanyServiceByRegisterOrAdd($user);
+                }
             });
         });
 

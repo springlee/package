@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('status');
             $table->date('paid_at');
             $table->string('transaction_id');
+            $table->string('remark');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('enterprise_company_id')->references('id')->on('enterprise_companies')->onDelete('cascade');
             $table->index('product_id');

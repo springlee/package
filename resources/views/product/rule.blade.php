@@ -9,7 +9,7 @@
                         <h5>产品明细</h5>
                     </div>
                     <div class="ibox-content">
-                        <form  class="form-horizontal autoJqValidator" data-ajax="{{route('products.pay',$product->id)}}">
+                        <form  class="form-horizontal" action="{{route('products.pay',$product->id)}}" method="post">
                             <input type="hidden" name="rule_id" id="rule_id">
                             <h3>{{$product->product_name}}</h3>
                             <blockquote class="text-warning" style="font-size:14px">

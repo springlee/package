@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\EnterpriseCompany;
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -77,6 +78,8 @@ class RegisterController extends Controller
             'status' => User::STATUS_ENABLE,
         ]);
         $user->assignRole('Admin');
+        $userService = new UserService();
+        $userService->enterpriseCompanyServiceByRegisterOrAdd($user);
         return $user;
     }
 }

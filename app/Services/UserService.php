@@ -2,7 +2,11 @@
 
 namespace App\Services;
 
+use App\Models\EnterpriseCompanyProduct;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UserService
 {
@@ -31,5 +35,32 @@ class UserService
             'rows' => $user->toArray(),
             'total' => User::query()->filter($where)->count()
         ];
+    }
+
+    public function enterpriseCompanyServiceByRegisterOrAdd(User $user){
+
+        $delay = 6 ;
+        $product = Product::query()->where('product_code','=','system')->first();
+        $enterProduct = EnterpriseCompanyProduct::create([
+            'product_id'=>$product->id,
+            'enterprise_company_id'=>$user->enterprise_company_id,
+            'expire_date'=>Carbon::now(),
+        ]);
+        $expiry_date = Carbon::now()->addMonth($delay);
+        $enterProduct->expiry_date = $expiry_date;
+        $enterProduct->save();
+        User::query()
+            ->where('enterprise_company_id', $user->enterprise_company_id)
+            ->update(['expiry_date'=>$expiry_date]);
+        $order = new Order();
+        $order = $order->fill([
+            'enterprise_company_id' => $user->enterprise_company_id,
+            'product_id' => $product->id,
+            'product_rule_id' =>0,
+            'money' => 0,
+            'status' => Order::STATUS_FINISH,
+            'remark'=>'系统服务赠送6个月 到期日:'.$expiry_date,
+        ]);
+        $order->save();
     }
 }

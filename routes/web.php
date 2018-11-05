@@ -19,6 +19,7 @@ Route::middleware(['setLocale'])->group(function () {
 Route::get('/changeLocale/{locale}', 'IndexController@changeLocale');
 
 Route::get('/test', 'IndexController@test');
+Route::post('products/pay/notify', 'ProductController@notify')->name('products.pay.notify');
 
 Route::middleware(['setLocale'])->group(function () {
     Route::get('users/forbidden', 'UserController@forbidden')->name('_users.forbidden');
