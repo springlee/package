@@ -78,5 +78,9 @@
   "finance":" 财务管理",
   "Admin":"管理员",
   "Permission":"权限",
-  "Logistics Company Code":"物流公司编码"
+  "Logistics Company Code":"物流公司编码",
+  "Hello!":"您好",
+  "Verify Email Address":"验证电子邮箱",
+  "Please click the button below to verify your email address.":"请点击下面的按钮验证您的电子邮件地址。",
+  "If you did not create an account, no further action is required.":"如果您没有创建帐户，则不需要进一步的操作。"
 }
