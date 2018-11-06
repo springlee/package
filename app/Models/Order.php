@@ -19,7 +19,7 @@ class Order extends Model
         'order_sn',
         'enterprise_company_id',
         'product_id',
-        'product_rule_id',
+        'num',
         'money',
         'status',
         'paid_at',

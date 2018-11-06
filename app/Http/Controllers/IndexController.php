@@ -40,7 +40,6 @@ class IndexController extends Controller
             ->where('type',Package::TYPE_IMMEDIATELY)
             ->count();
 
-
         $data['package_today_count'] = Package::query()
             ->where('enterprise_company_id',$enterprise_company_id)
             ->where('created_at','>', Carbon::now()->format('Y-m-d'))
@@ -76,7 +75,17 @@ class IndexController extends Controller
             ->where('status','=',Package::STATUS_NEW)
             ->where('type',Package::TYPE_IMMEDIATELY)
             ->count();
-        return view('index.main',compact('data'));
+
+        //到期提醒
+        $products = \Auth::user()->enterpriseCompany->products;
+
+
+
+
+
+
+
+        return view('index.main',compact('data','products'));
     }
 
 

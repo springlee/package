@@ -69,7 +69,7 @@ class FrontUserController extends Controller
     {
 
         $grid = new Grid(new User);
-        $grid->model()->where('user_type', '=', 'manger');
+        $grid->model()->where('user_type', '=', User::TYPE_MANGER);
         $grid->id('ID');
         $grid->email('邮箱');
         $grid->email_verified_at('邮箱验证时间');

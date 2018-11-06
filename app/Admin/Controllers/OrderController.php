@@ -38,7 +38,7 @@ class OrderController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Order);
-
+        $grid->model()->where('status', '=', Order::STATUS_FINISH);
         $grid->order_sn('订单号');
         $grid->order_sn('交易号');
         $grid->column('enterpriseCompany.enterprise_company_name','企业公司名称');

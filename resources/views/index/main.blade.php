@@ -126,6 +126,20 @@
         }
     </style>
     <div class="wrapper wrapper-content animated fadeInRight">
+
+        @foreach($products as $product)
+            @if(\Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($product->pivot->expiry_date),false)<30)
+                <div class="alert alert-warning alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    @if(\Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($product->pivot->expiry_date),false)<0)
+                        "{{$product->product_name}}" 已到期 ,请尽快充值
+                          @else
+                        "{{$product->product_name}}" 即将到期 剩余天数（{{\Carbon\Carbon::now()->diffInDays(new \Carbon\Carbon($product->pivot->expiry_date),false)}}）天, 请尽快充值
+                    @endif
+
+                </div>
+            @endif
+        @endforeach
         <div class="row">
             <div class="ibox">
                 <div class="ibox-title">
