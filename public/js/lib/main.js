@@ -189,7 +189,8 @@ function loadTableData(params) {
 }
 
 function refreshTableData() {
-    $("#table").bootstrapTable('selectPage', 1);
+    // $("#table").bootstrapTable('selectPage', 1);
+    $('button[name="refresh"]').trigger('click');
     if (typeof(tableOperate.updateActionButtons) === 'function') {
         $(".bs-checkbox input").change(function (event) {
             tableOperate.updateActionButtons();

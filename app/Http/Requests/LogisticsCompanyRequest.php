@@ -16,7 +16,7 @@ class LogisticsCompanyRequest extends Request
                    if($id){
                        $query->where('id','!=',$id);
                    }
-                   return $query->where('enterprise_company_id',$this->user()->enterprise_company_id);
+                   return $query->where('enterprise_company_id',\Auth::user()->enterprise_company_id);
                })
            ],
            'logistics_company_code'=>['required'],

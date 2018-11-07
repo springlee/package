@@ -78,13 +78,6 @@ class IndexController extends Controller
 
         //到期提醒
         $products = \Auth::user()->enterpriseCompany->products;
-
-
-
-
-
-
-
         return view('index.main',compact('data','products'));
     }
 

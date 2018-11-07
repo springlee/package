@@ -24,7 +24,7 @@ class PackageExport implements FromQuery, WithHeadings, WithMapping, WithTitle, 
 
     public function headings(): array
     {
-        return ['物流单号', '物流公司', '包裹类型', '包裹数量', '签收数量', '创建时间', '签收时间', '签收人', '状态', '备注'];
+        return ['物流单号', '物流公司', '包裹类型', '包裹数量', '签收数量', '创建时间', '签收时间', '签收人', '状态', '确认状态','备注'];
     }
 
     public function query()
@@ -47,6 +47,7 @@ class PackageExport implements FromQuery, WithHeadings, WithMapping, WithTitle, 
             $item->received_at,
             $item->receive_user_id? $item->receiveUser->name :'',
             Package::$statusMap[$item->status],
+            Package::$markSureMap[$item->mark_sure],
             $item->remark,
         ];
     }

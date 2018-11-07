@@ -70,7 +70,12 @@ return [
             'bucket'     => env('QINIU_BUCKET', 'package'),
             'domain'     => env('QINIU_DOMAIN', 'pht0kczcx.bkt.clouddn.com'), // or host: https://xxxx.clouddn.com
         ],
-
+        'admin' => [
+            'driver'     => 'local',
+            'root'       => public_path('upload'),
+            'visibility' => 'public',
+            'url' => env('APP_URL').'/upload/',
+        ],
     ],
 
 ];
