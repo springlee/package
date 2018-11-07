@@ -99,11 +99,4 @@ class IndexController extends Controller
             ->withInput();
     }
 
-    public function test(){
-        $user = \Auth::user();
-        $user->assignRole('Company colleagues');
-        $user->givePermissionTo('package_info_input');
-        var_dump($user->getPermissionsViaRoles()->toArray(),$user->getDirectPermissions()->toArray(),$user->getAllPermissions()->toArray());exit;
-    }
-
 }
