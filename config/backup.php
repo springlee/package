@@ -27,7 +27,7 @@ return [
         'destination' => [
             'filename_prefix' => '',
             'disks' => [
-                'local',
+                'local','qiniu',
             ],
         ],
         'temporary_directory' => storage_path('app/backup-temp'),
@@ -64,7 +64,7 @@ return [
     'monitorBackups' => [
         [
             'name' => config('app.name'),
-            'disks' => ['local'],
+            'disks' => ['local','qiniu'],
             'newestBackupsShouldNotBeOlderThanDays' => 1,
             'storageUsedMayNotBeHigherThanMegabytes' => 5000,
         ],
