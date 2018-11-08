@@ -89,11 +89,6 @@ function AjaxRequestForm(data, statusText, xhr, jqForm) {
         if (typeof(data.url) !== 'undefined') {
             toastr.success(data.message);
             layer.closeAll();
-            if (typeof parent.refreshTableData === "function") {
-                parent.refreshTableData()
-            } else {
-                refreshTableData()
-            }
             window.location.href = data.url;
         } else {
             var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
