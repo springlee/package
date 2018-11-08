@@ -65,7 +65,10 @@ class PackageReceiveImport implements ToCollection, WithBatchInserts, WithHeadin
             }
 
             //判断是否已签收
-            $package = Package::query()->where('logistics_tracking_number',$data['logistics_tracking_number'])->first();
+            $package = Package::query()
+                ->where('logistics_tracking_number',$data['logistics_tracking_number'])
+                ->where('enterprise_company_id','=', \Auth::user()->enterprise_company_id)
+                ->first();
             if($package){
                 if($package->status == Package::STATUS_FINISH) {
                     throw new InvalidRequestException($data['logistics_tracking_number'].'已签收');
