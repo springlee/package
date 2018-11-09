@@ -51,6 +51,8 @@ class AppServiceProvider extends ServiceProvider
                 $config['return_url'] = route('products.pay.return');
             } else {
                 $config['log']['level'] = Logger::WARNING;
+                $config['notify_url'] = route('products.pay.notify');
+                $config['return_url'] = route('products.pay.return');
             }
             return Pay::alipay($config);
         });
