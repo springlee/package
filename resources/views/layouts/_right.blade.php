@@ -90,6 +90,9 @@
         <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{{route('index.main')}} "
                 frameborder="0" data-id="index_v1.html"></iframe>
     </div>
+    <div class="footer">
+        <div class="pull-right">  &copy; 2018 深圳市佰客电子商务有限公司  <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action">粤ICP备12042592号-2</a></div>
+    </div>
 </div>
 <!--右侧部分结束-->
 <!--右侧边栏开始-->

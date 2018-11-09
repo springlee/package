@@ -88,7 +88,7 @@
 
     <div class="signup-footer">
         <div class="pull-left">
-            &copy; 2018 All Rights Reserved. PACKAGE
+            &copy; 2018 深圳市佰客电子商务有限公司  <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action">粤ICP备12042592号-2</a>
         </div>
     </div>
 </div>
