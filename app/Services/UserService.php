@@ -64,5 +64,97 @@ class UserService
             'remark'=>'系统服务赠送'.$delay.Product::$unitMap[$product->unit].' 到期日:'.$expiry_date->format('Y-m-d'),
         ]);
         $order->save();
+
+        //初始化物流公司
+        $this->initLogisticsEnterpriseCompanyCompanyService($user);
+    }
+
+    public function initLogisticsEnterpriseCompanyCompanyService($user){
+
+        if(!count($user->enterpriseCompany->logisticsCompanies)){
+            $arrList = [
+                [
+                    'logistics_company_name'=>'邮政EMS',
+                    'logistics_company_code'=>'ems',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'申通快递',
+                    'logistics_company_code'=>'shentong',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'中通速递',
+                    'logistics_company_code'=>'zhongtong',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'圆通速递',
+                    'logistics_company_code'=>'yuantong',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'顺丰快递',
+                    'logistics_company_code'=>'shunfeng',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'亚风快递',
+                    'logistics_company_code'=>'yafengsudi',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'天天快递',
+                    'logistics_company_code'=>'tiantian',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'DHL快递',
+                    'logistics_company_code'=>'dhl',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'韵达货运',
+                    'logistics_company_code'=>'yunda',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+                [
+                    'logistics_company_name'=>'百世汇通',
+                    'logistics_company_code'=>'huitongkuaidi',
+                    'enterprise_company_id'=>$user->enterprise_company_id,
+                    'create_user_id'=>$user->id,
+                    'status'=>'enable',
+                    'created_at'=>Carbon::now()
+                ],
+            ];
+            \DB::table('logistics_companies')->insert($arrList);
+        }
     }
 }
